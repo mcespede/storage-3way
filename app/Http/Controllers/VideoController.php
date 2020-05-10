@@ -231,7 +231,7 @@ public function update($video_id, Request $request){
         //Antes de actualizar el video tenemos que eliminar el registro anterior para que el video no se reporduzca una y otra vez. Es decir si no elimino el registro cada vez que se actualize el video se crea una copia y nos satura la base de dato.
         Storage::disk('videos')->delete($video->video_path);
         //*************************//
-        
+
         ///Una vez borrado el registro ya se puede actualizar.
          $video_path = time().$video_file ->getClientOriginalName();
         \Storage::disk('videos')->put($video_path,\File::get($video_file));
@@ -247,4 +247,27 @@ public function update($video_id, Request $request){
     //Finalmente ceramos la ruta.
 }
 //*******************************************//
+// ---------FUNCION DE SEARCH--------//
+
+//Le pasamos por parametro la busqueda que vamos a realizar
+//POr defecto el parametro va a ser NULL porque puede que el parametro venga por la URL con busqueda o sin busqueda
+public function search($search = null){
+
+    //Si el parametro de SEARCH es nulo entonces le vamos a asignar un valor a search que es que que vienen en la request
+    if (is_null($search)) {
+        //De esta forma siempre va a tener un valor que es el que ingresa en la barra de busqueda.
+        $search= \Request::get('search');
+    }
+    //Vamos a hacer una QUERY , para que busque en el titulo
+    //Cuando realicemos la busqueda, si el titulo es igual a lo que venga en SEARCH que nos de el resultado
+    //Sacame todos los video cuando el titulo contenga lo que hemos buscado
+    //Los % los pongo para que me saque la coincidencias de la Primera letra y la Ultima, no solo el resultado completo
+    $result = Video::where('title','LIKE','%'.$search.'%')->paginate(5);
+    
+    return view('video.search', array(
+        'videos'=> $result,
+        'search'=> $search
+    ));
+}
+
 }
