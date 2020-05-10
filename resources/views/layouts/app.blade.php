@@ -47,7 +47,7 @@
 
                     <!-- -------------- Branding Image -------------------->
                     <!-- Esto es el nombre que nos lleva a HOME-->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/home') }}">
                         Videos Laravel
                     </a>
                     <!-- -------------- /Branding Image ------------------->
