@@ -256,7 +256,12 @@ public function search($search = null){
     //Si el parametro de SEARCH es nulo entonces le vamos a asignar un valor a search que es que que vienen en la request
     if (is_null($search)) {
         //De esta forma siempre va a tener un valor que es el que ingresa en la barra de busqueda.
+        //Esta es la variable que nos llega por get
         $search= \Request::get('search');
+        //Esto es para que nos llegue un parametro limpia cuando nos redirija
+        //De esta manera a la hora de buscar algo, la direccion sale con lo que escribi en search
+        //Le pasamos el contenido que tiene la variable por GET
+        return redirect()->route('videoSearch',array('search' =>$search));
     }
     //Vamos a hacer una QUERY , para que busque en el titulo la informacion
     //Cuando realicemos la busqueda, si el titulo es igual a lo que venga en SEARCH que nos de el resultado
