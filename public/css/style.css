@@ -1,0 +1,43 @@
+/*Para poder incluir este archivo tengo que darlo de alta en RESOURCES>VIEWS>app.blade. 
+Icluirlo en el header para que aplique a todo*/
+body{
+}
+
+/* Esta mascara controla el tamaño principal de las miniaturas*/
+.video-image-mask{
+	width: 200px;
+	height: 150px;
+	/* Lo que se salga de la pantalla lo oculte*/
+	overflow: hidden;
+}
+
+/*Como las imagenes son muy grandes hacemos esto. A los elementos 
+dentro de video-image-class que dentro tengan elementos de tipo video-image
+ les ponemos un with del 100%*/
+.video-image-mask .video-image{
+width: 105%;
+
+}
+
+/*  Alos elementos .panel-body que hayan dentro la del ID (#)video-list, les trabajo el padding*/
+#video-list .panel-body{
+padding: 0px;
+}
+
+/*Esto maneja el formato del titulo de los videos*/
+.video-title{
+	font-weight: bold;
+	font-size: 18px;
+}
+
+/* Trabajo el tamaño del reproductor de video */
+video{
+	width: 50%;
+	height:100px;
+}
+#video-mini{
+	width: 100px;
+	height: auto;
+}
+/********************************************************************************/
+
