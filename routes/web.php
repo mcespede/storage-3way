@@ -133,3 +133,9 @@ Route::post ('/update-video/{video_id}', array(
 	//Ahora le indico que clase y que controlador(accion) va a utilizar
 	'uses' => 'VideoController@update'
 ));
+/*------------SEARCH------------------*/
+//El parametro search es un parametro opcional, me puede venir o no
+Route::get('/buscar/{search?}',array(
+	'as'=>'videoSearch',
+	'uses'=> 'VideoController@search'
+));
