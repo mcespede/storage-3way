@@ -258,7 +258,7 @@ public function search($search = null){
         //De esta forma siempre va a tener un valor que es el que ingresa en la barra de busqueda.
         $search= \Request::get('search');
     }
-    //Vamos a hacer una QUERY , para que busque en el titulo
+    //Vamos a hacer una QUERY , para que busque en el titulo la informacion
     //Cuando realicemos la busqueda, si el titulo es igual a lo que venga en SEARCH que nos de el resultado
     //Sacame todos los video cuando el titulo contenga lo que hemos buscado
     //Los % los pongo para que me saque la coincidencias de la Primera letra y la Ultima, no solo el resultado completo
