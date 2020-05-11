@@ -100,7 +100,8 @@
                             <!-- Tendre un dropdown con el nombre del USUARIO identificado -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <!-- Agregamos para que se vea el Alias registrado-->
+                                    {{ Auth::user()->alias }} <span class="caret"></span>
                                 </a>
 
                                 <!-- ---------/OPCIONES-MENU --------------->
@@ -119,8 +120,8 @@
                                         </form>
                                         <!-- --------- /1-LOGOUT --------------->
 
-                                        <!-- --------- 2-OPCION --------------->
-                                            <!-- Aqui puedo agregar mas opciones al Drop Down -->
+                                        <!-- --------- 2-USER-ACCOUNT --------------->
+
                                         <!-- --------- /2-OPCION --------------->
                                     </li>
                                 </ul>
