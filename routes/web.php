@@ -153,3 +153,10 @@ Route::get('/buscar/{search?}/{filter?}',array(
 Route::get('/clear-cache',function(){
 	$code = Artisan::call('cache:clear');
 });
+
+/*------------CANAL-USUARIO------------------*/
+//El user_id es obligatorio
+Route::get('/canal/{user_id}',array(
+	'as'=> 'channel',
+	'uses'=> 'UserController@channel'
+));
