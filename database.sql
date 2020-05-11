@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS videosLaravel;
-USE videoslaravel;
+CREATE DATABASE IF NOT EXISTS storageLaravel;
+USE storagelaravel;
 
 CREATE TABLE users(
 id int (255) auto_increment not null,

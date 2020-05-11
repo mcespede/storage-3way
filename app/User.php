@@ -15,7 +15,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        //Para poder agregar mas campos en el registration from los agregamos aqui primero
+        //En este caso agregué SURNAME and  ALIAS
+        'name', 'email', 'password','surname','alias',
     ];
 
     /**
