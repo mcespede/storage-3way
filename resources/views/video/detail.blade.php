@@ -23,7 +23,7 @@
 			<div class="panel-heading class">
 				<div class="panel-title">
 					<!-- Aqui voy a utilizar un helper para poder formatear las fechas. Utilizo el helper y el metodo dentro del helper, y finalmente le paso mi fecha para formatear-->
-					Subido por <strong>{{$video->user->name.' '.$video->user->surname}}</strong> {{\FormatTime::LongTimeFilter($video->created_at)}}
+					Subido por <strong><a href="{{route('channel',['user_id'=>$video->user_id])}}">{{$video->user->name.' '.$video->user->surname}}</a></strong> {{\FormatTime::LongTimeFilter($video->created_at)}}
 				</div>
 			</div>
 			<div class="panel-body">

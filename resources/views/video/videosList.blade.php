@@ -30,8 +30,10 @@
                                 <div class="data">
                                     <!-- Para que el titulo me lleve al video tenemos que pararle el nombre de la ruta y el parametro del [video_id] que estamos recorriendo en este preciso instante-->
                                     <h3 class="video-title"><a href="{{route('detailVideo',['video_id' => $video ->id]) }}"> {{$video->title}}</a></h3>
-                                    
-                                    <p>{{$video->user->name.' '.$video->user->surname}}</p>
+                                    <!-- Para q nos lleve al canal de usuario al hacer click en el nombre
+                                        debemos porner el nombre de la ruta y el user_id que necesita
+                                        que lo podemos conseguir del objeto VIDEO user_id-->
+                                    <p><a href="{{route('channel',['user_id'=>$video->user_id])}}"> {{$video->user->name.' '.$video->user->surname}}</a> | {{\FormatTime::LongTimeFilter($video->created_at)}}</p>
                                 </div>
 
                             <!-------------BOTONES-------------->
