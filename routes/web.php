@@ -135,7 +135,16 @@ Route::post ('/update-video/{video_id}', array(
 ));
 /*------------SEARCH------------------*/
 //El parametro search es un parametro opcional, me puede venir o no
-Route::get('/buscar/{search?}',array(
+//Para que el FILTRO funcione le tengo que pasar a la ruta otro parametro FILTER. Tambien va a ser opcional (?)
+Route::get('/buscar/{search?}/{filter?}',array(
 	'as'=>'videoSearch',
 	'uses'=> 'VideoController@search'
 ));
+
+/*------------BORRAR-CACHE------------------*/
+/* Esta ruta nos permite borra el cache de Laravel
+	Es exactamente igual que ejecutarlo en la consola*/
+
+Route::get('/clear-cache',function(){
+	$code = Artisan::call('cache:clear');
+});
