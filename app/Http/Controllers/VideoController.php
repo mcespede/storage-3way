@@ -251,7 +251,8 @@ public function update($video_id, Request $request){
 
 //Le pasamos por parametro la busqueda que vamos a realizar
 //POr defecto el parametro va a ser NULL porque puede que el parametro venga por la URL con busqueda o sin busqueda
-public function search($search = null){
+//Tambien pasamos el parametro filter para poder utilizarlo
+public function search($search = null, $filter = null){
 
     //Si el parametro de SEARCH es nulo entonces le vamos a asignar un valor a search que es que que vienen en la request
     if (is_null($search)) {
@@ -263,14 +264,57 @@ public function search($search = null){
         //Le pasamos el contenido que tiene la variable por GET
         return redirect()->route('videoSearch',array('search' =>$search));
     }
+
+    //-----FILTRO--------
+    /*Si no existe el parametro FILTER es decir es NULO,
+     *Si existe el parametro que me llega por GET
+     *Pero no es nulo SEARCH, entonces ...
+      me hace una redireccion con el filtro capturando el parametro GET sino nada*/
+    if (is_null($filter) && \Request::get('filter') && !is_null($search)) {
+        //Creamos variable filter para capturar el parametro por GET
+        $filter= \Request::get('filter');
+        //Esto es para que nos llegue un parametro limpia cuando nos redirija
+        //De esta manera a la hora de buscar algo, la direccion sale con lo que escribi en search
+        //Le pasamos el contenido que tiene la variable por GET, es decir los dos parametros
+        return redirect()->route('videoSearch',array('search' =>$search, 'filter' =>$filter));
+    }
+    /**************Si hay filtro***********/
+    //Aqui vamos a optimizar la consulta para que queda perfecta
+    //Creamos dos variable que son las que va a utilizar el ORDERBY
+    //Estas con las variables que cambian en el filtro cunado seleccionamos las opciones
+    $colum ='id';
+    $order = 'desc';
+    //En caso de que el filtro exista, es decir que no es NULL
+    if (!is_null($filter)) {
+        //Hacemos el ordenamiento de los video de acuerdo a los criterios del filtro
+        //Ahora tenemos que hacer un acomprobarcion con el IF
+        if ($filter == 'new') {
+            $colum ='id';
+            $order = 'desc';;
+        }
+        if ($filter == 'old') {
+            $colum ='id';
+            $order = 'asc';;
+        }
+        if ($filter == 'alfa') {                                
+            $colum ='title';
+            $order = 'asc';;
+        }
+
+    }
+    /***************************************/
     //Vamos a hacer una QUERY , para que busque en el titulo la informacion
     //Cuando realicemos la busqueda, si el titulo es igual a lo que venga en SEARCH que nos de el resultado
     //Sacame todos los video cuando el titulo contenga lo que hemos buscado
     //Los % los pongo para que me saque la coincidencias de la Primera letra y la Ultima, no solo el resultado completo
-    $result = Video::where('title','LIKE','%'.$search.'%')->paginate(5);
     
+    $videos = Video::where('title','LIKE','%'.$search.'%')
+                            //Ha esto le agregamos el ORDERBY con los valores de las variables de arriba y el paginate
+                            ->orderBy($colum,$order)
+                            ->paginate(5);
+
     return view('video.search', array(
-        'videos'=> $result,
+        'videos'=> $videos,
         'search'=> $search
     ));
 }
