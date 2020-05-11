@@ -4,8 +4,52 @@
 		"selected_items":
 		[
 			[
+				"op",
+				"option\tTag"
+			],
+			[
+				"se",
+				"select\tTag"
+			],
+			[
+				"sea",
+				"search"
+			],
+			[
+				"Video",
+				"VideoController"
+			],
+			[
+				"req",
+				"request"
+			],
+			[
+				"VId",
+				"Video"
+			],
+			[
 				"array",
-				"array_chunk"
+				"array"
+			],
+			[
+				"re",
+				"redirect"
+			],
+			[
+				"ar",
+				"array"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"user",
+				"user_id"
+			],
+			[
+				"var",
+				"var_dump"
 			],
 			[
 				"fo",
@@ -14,10 +58,6 @@
 			[
 				"te",
 				"textarea\tTag"
-			],
-			[
-				"re",
-				"required\tAttr"
 			],
 			[
 				"video",
@@ -84,33 +124,57 @@
 	"buffers":
 	[
 		{
-			"contents": "@extends('layouts.app')\n\n@section('content')\n<!-- -----MAIN-CONTAINER -------->\n<!-- El offset se utiliza para meter una columna por delante y otra por detras para que quede mas centrada la informacion en la pantalla -->\n<div class=\"col-md-10 col-md-offset-1\">\n\t<h2>\n\t\t{{$video->title}}\n\t</h2>\n\t<hr>\n\t<div class=\"col-md-8\">\n\t\t<!------CARGAR EL VIDEO------>\n\t\t<!-- Esto es un etiqueta de HTML5-->\n\t\t<video controls=\"\" id=\"video-player\">\n\t\t\t<!-- SOURCE me va a buscar el video y cargarlo. Le pasamos el nombre de la ruta y como segundo parametro que nos llega por URL.\n\t\t\tLe pasamos el (video_path) que es la propieda donde esta guardada la ruta -->\n\t\t\t<source src=\"{{route('fileVideo', ['filename' => $video->video_path]) }}\"></source>\n\t\t\t<!-- En caso de que no funcionde el source damos un mensaje de error-->\n\t\t\tTu navegador no es compatible con HTML5\n\t\t</video>\n\t\t<!------ DESCRIPCION DEL VIDEO------>\n\t\t<div class=\"panel panel-success video-data col-md-12\">\n\t\t\t<div class=\"panel-heading class\">\n\t\t\t\t<div class=\"panel-title\">\n\t\t\t\t\t<!-- Aqui voy a utilizar un helper para poder formatear las fechas. Utilizo el helper y el metodo dentro del helper, y finalmente le paso mi fecha para formatear-->\n\t\t\t\t\tSubido por <strong>{{$video->user->name.' '.$video->user->surname}}</strong> {{\\FormatTime::LongTimeFilter($video->created_at)}}\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"panel-body\">\n\t\t\t\t{{$video->description}}\n\t\t\t</div>\n\n\t\t</div>\n\t\t<!------VIDEO   ------>\n\t\t<!--Para los comentario aprovecha la funcion de INCLUDE y lo hago aparte para que no sea pesado el codigo todo en la misma pagina-->\n\t\t<!-- Solo se meustran los comentarios a los usuarios identificados -->\n\t\t\n\t\t\t@include('video.comments')\n\t</div>\n\n</div>\n@endsection",
-			"file": "resources/views/video/detail.blade.php",
-			"file_size": 1792,
-			"file_write_time": 132335215030609846,
+			"file": "app/Http/Controllers/VideoController.php",
 			"settings":
 			{
-				"buffer_size": 1723,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/Http/Controllers/CommentController.php",
-			"settings":
-			{
-				"buffer_size": 1736,
+				"buffer_size": 14012,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "resources/views/video/comments.blade.php",
+			"file": "resources/views/home.blade.php",
 			"settings":
 			{
-				"buffer_size": 728,
+				"buffer_size": 584,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/web.php",
+			"settings":
+			{
+				"buffer_size": 5381,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/views/video/search.blade.php",
+			"settings":
+			{
+				"buffer_size": 1035,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "resources/views/video/videosList.blade.php",
+			"settings":
+			{
+				"buffer_size": 6887,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "resources/views/layouts/app.blade.php",
+			"settings":
+			{
+				"buffer_size": 7517,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -156,26 +220,28 @@
 	[
 		"/C/wamp64/www/curso-laravel",
 		"/C/wamp64/www/curso-laravel/videos-laravel",
-		"/C/wamp64/www/curso-laravel/videos-laravel/app",
-		"/C/wamp64/www/curso-laravel/videos-laravel/app/Http",
-		"/C/wamp64/www/curso-laravel/videos-laravel/app/Http/Controllers",
 		"/C/wamp64/www/curso-laravel/videos-laravel/resources",
 		"/C/wamp64/www/curso-laravel/videos-laravel/resources/views",
-		"/C/wamp64/www/curso-laravel/videos-laravel/resources/views/video"
+		"/C/wamp64/www/curso-laravel/videos-laravel/resources/views/video",
+		"/C/wamp64/www/curso-laravel/videos-laravel/storage",
+		"/C/wamp64/www/curso-laravel/videos-laravel/storage/app",
+		"/C/wamp64/www/curso-laravel/videos-laravel/storage/app/images",
+		"/C/wamp64/www/curso-laravel/videos-laravel/storage/app/videos"
 	],
 	"file_history":
 	[
+		"/C/wamp64/www/curso-laravel/videos-laravel/resources/views/video/edit.blade.php",
+		"/C/wamp64/www/curso-laravel/videos-laravel/public/css/style.css",
 		"/C/wamp64/www/curso-laravel/videos-laravel/routes/web.php",
-		"/C/wamp64/www/curso-laravel/videos-laravel/app/Video.php",
+		"/C/wamp64/www/curso-laravel/videos-laravel/resources/views/home.blade.php",
+		"/C/wamp64/www/curso-laravel/videos-laravel/resources/views/video/comments.blade.php",
 		"/C/wamp64/www/curso-laravel/videos-laravel/app/Comment.php",
 		"/C/wamp64/www/curso-laravel/videos-laravel/app/Http/Controllers/CommentController.php",
-		"/C/wamp64/www/curso-laravel/videos-laravel/resources/views/video/comments.blade.php",
 		"/C/wamp64/www/curso-laravel/videos-laravel/resources/views/video/detail.blade.php",
+		"/C/wamp64/www/curso-laravel/videos-laravel/app/Video.php",
 		"/C/wamp64/www/curso-laravel/videos-laravel/app/Http/Controllers/VideoController.php",
-		"/C/wamp64/www/curso-laravel/videos-laravel/resources/views/home.blade.php",
 		"/C/wamp64/www/curso-laravel/videos-laravel/Sublime-videos-laravel.sublime-project",
 		"/C/wamp64/www/curso-laravel/videos-laravel/resources/views/layouts/app.blade.php",
-		"/C/wamp64/www/curso-laravel/videos-laravel/public/css/style.css",
 		"/C/wamp64/www/curso-laravel/videos-laravel/app/helpers/FormatTime.php",
 		"/C/wamp64/www/curso-laravel/videos-laravel/app/Providers/FormatTimeServiceProvider.php",
 		"/C/wamp64/www/curso-laravel/videos-laravel/config/app.php",
@@ -199,7 +265,7 @@
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 27.0
 	},
 	"find_in_files":
 	{
@@ -213,6 +279,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Storage::disk('images')->delete($video->image);"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -230,24 +297,84 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "resources/views/video/detail.blade.php",
+					"file": "app/Http/Controllers/VideoController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1723,
+						"buffer_size": 14012,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1695,
-								1695
+								13301,
+								13301
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5167.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "resources/views/home.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 584,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								583,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "routes/web.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5381,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5290,
+								5290
 							]
 						],
 						"settings":
@@ -256,27 +383,55 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 216.0,
+						"translation.y": 2869.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "app/Http/Controllers/CommentController.php",
+					"buffer": 3,
+					"file": "resources/views/video/search.blade.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1736,
+						"buffer_size": 1035,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1562,
-								1562
+								393,
+								393
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "resources/views/video/videosList.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6887,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								663,
+								692
 							]
 						],
 						"settings":
@@ -289,32 +444,34 @@
 						"translation.y": 162.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "resources/views/video/comments.blade.php",
+					"buffer": 5,
+					"file": "resources/views/layouts/app.blade.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 728,
+						"buffer_size": 7517,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								728,
-								728
+								2393,
+								2393
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 666.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -335,7 +492,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 27.0
 	},
 	"input":
 	{
@@ -390,7 +547,7 @@
 	"project": "Sublime-videos-laravel.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 50.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -486,7 +643,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 240.0,
+	"side_bar_width": 189.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

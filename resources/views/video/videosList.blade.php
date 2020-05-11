@@ -6,7 +6,7 @@
 
                     <!-- Al FOREACH le paso el nombre de la variable que le paso desde el controlador a la vista ($videos) y que en cada interaccion me cree una variable que se llame $video.-->
                     @foreach($videos as $video)
-                        <div class="video-item col-md-8 pull-left panel panel-default">
+                        <div class="video-item col-md-10 pull-left panel panel-default">
 
                             <!--------PANEL-BODY ------------------------------------->
                             <div class="panel-body">

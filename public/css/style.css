@@ -30,14 +30,5 @@ padding: 0px;
 	font-size: 18px;
 }
 
-/* Trabajo el tamaño del reproductor de video */
-video{
-	width: 50%;
-	height:100px;
-}
-#video-mini{
-	width: 100px;
-	height: auto;
-}
 /********************************************************************************/
 
