@@ -7,10 +7,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
 
+                <!-- ------BODY-PANEL ----------------->
                 <div class="panel-body">
+                    <!-- ------------FORM ------------------->
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
+                        <!---------NAME------------>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
 
@@ -24,7 +27,35 @@
                                 @endif
                             </div>
                         </div>
+                        <!---------SUR-NAME------------>
+                        <div class="form-group{{ $errors->has('surname') ? ' has-error' : '' }}">
+                            <label for="surname" class="col-md-4 control-label">Last name</label>
 
+                            <div class="col-md-6">
+                                <input id="surname" type="text" class="form-control" name="surname" value="{{ old('surname') }}" required autofocus>
+
+                                @if ($errors->has('surname'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('surname') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <!---------Alias------------>
+                        <div class="form-group{{ $errors->has('alias') ? ' has-error' : '' }}">
+                            <label for="alias" class="col-md-4 control-label">Alias</label>
+
+                            <div class="col-md-6">
+                                <input id="alias" type="text" class="form-control" name="alias" value="{{ old('alias') }}" required autofocus>
+
+                                @if ($errors->has('alias'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('alias') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <!---------EMAIL------------>
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
@@ -38,7 +69,7 @@
                                 @endif
                             </div>
                         </div>
-
+                        <!---------PASSWORD------------>
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
@@ -52,7 +83,7 @@
                                 @endif
                             </div>
                         </div>
-
+                        <!---------CONFIRM-PASSWORD------------>
                         <div class="form-group">
                             <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
@@ -69,7 +100,9 @@
                             </div>
                         </div>
                     </form>
+                    <!-- ------------/FORM ------------------->
                 </div>
+                <!-- ------/BODY-PANEL ----------------->
             </div>
         </div>
     </div>
