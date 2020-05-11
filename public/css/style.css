@@ -31,4 +31,12 @@ padding: 0px;
 }
 
 /********************************************************************************/
-
+/* Con esto manipulamos el boton del filtro de busquedas */
+/*Importante asegurarse de borrar la CACHE de LAravel
+  Aveces no se reflejan los cambios si no se borra la cache
+  Creamos una ruta para que nos borre la cache
+  Aveces es necesario tambien borrar el cache del navegador*/
+.filter{
+	display: block;
+	margin-top: 5px;
+}
