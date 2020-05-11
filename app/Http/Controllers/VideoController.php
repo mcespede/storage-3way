@@ -259,6 +259,13 @@ public function search($search = null, $filter = null){
         //De esta forma siempre va a tener un valor que es el que ingresa en la barra de busqueda.
         //Esta es la variable que nos llega por get
         $search= \Request::get('search');
+
+        /**************SI PRESIONO EL BOTON SIN NINGUNA BUSQUEDA*************/
+        //Si presiono el boton de busqueda sin nada nos redirige al listado principal en el HOME
+        if (is_null($search)) {
+           return redirect()->route('home');
+        }
+        /*******************************************************************/
         //Esto es para que nos llegue un parametro limpia cuando nos redirija
         //De esta manera a la hora de buscar algo, la direccion sale con lo que escribi en search
         //Le pasamos el contenido que tiene la variable por GET
