@@ -1,7 +1,7 @@
 
-            <!-- Ahora vamos a recorrer todos los videos que existen , utilizando el metofo PAGINATE que creamos en el controlador HOME -->
+            <!-- Ahora vamos a recorrer todos los videos que existen , utilizando el metodo PAGINATE que creamos en el controlador HOME -->
             <div id="videos-list">
-                <!-- Aqui hacemos un IF ELSE para trabajar con la SEARCH. Si existe videos que conidan con la busqueda entra en el bucle, sino me muestra una alerta -->
+                <!-- Aqui hacemos un IF ELSE para trabajar con la SEARCH. Si existe videos que coincidan con la busqueda entra en el bucle, sino me muestra una alerta -->
                 @if(count($videos)>=1)
 
                     <!-- Al FOREACH le paso el nombre de la variable que le paso desde el controlador a la vista ($videos) y que en cada interaccion me cree una variable que se llame $video.-->
