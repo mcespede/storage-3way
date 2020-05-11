@@ -35,7 +35,12 @@ Route::get('/', function () {
 // Esto es un middleware que verifica la Autenticacion del usuario
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Esta ruta la vamos a utilizar para no se necesite authenticacion para ver los videos, pero si para modificarlos
+//En el homecontroller le quitamos la parte de la atenticacion y le ponemos el middleware web
+Route::get('/home', array(
+	'as'=> 'home',
+	'uses'=> 'HomeController@index'
+));
 
 //------------RUTAS CONTROLADOR VIDEOS -------------
 
