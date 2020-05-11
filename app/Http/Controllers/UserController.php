@@ -23,6 +23,12 @@ class UserController extends Controller
    public function channel($user_id){
    		// A traves del user_id (que llega por la URL) solicitamos al modelo USER toda la inforamcion del OBJETO del usuario 
    		$user = User::find($user_id);
+
+   		/******SI NO EXISTE EL USUARIO **************/
+   		//Si el usuario no existe que me redirija al Home
+   		if (!is_object($user)) {
+   			return redirect()-> route('home');
+   		}
    		//Vamos a sacar todos los videos asociados a ese usuario
    		//Sacame todos los videos cuyo user_id sea igual al user_id que me llega por la URL
    		$videos = Video::where('user_id',$user_id)->paginate(5);
