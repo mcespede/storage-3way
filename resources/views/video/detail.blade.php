@@ -3,7 +3,7 @@
 @section('content')
 <!-- -----MAIN-CONTAINER -------->
 <!-- El offset se utiliza para meter una columna por delante y otra por detras para que quede mas centrada la informacion en la pantalla -->
-<div class="col-md-10 col-md-offset-1">
+<div class="col-md-10 ">
 	<h2>
 		{{$video->title}}
 	</h2>

@@ -42,7 +42,10 @@ Route::get('/home', array(
 	'uses'=> 'HomeController@index'
 ));
 
-//------------RUTAS CONTROLADOR VIDEOS -------------
+//----------------------------------------------------------------------------------------
+//--------------------------------------------------RUTAS CONTROLADOR VIDEOS -------------
+//----------------------------------------------------------------------------------------
+
 
 /*------------CREAR------------------*/
 /*Creamos la ruta hacia la pagina y utilizamos un array para pasarle los parametros que estaremos utilizando*/
@@ -145,6 +148,9 @@ Route::get('/buscar/{search?}/{filter?}',array(
 	'as'=>'videoSearch',
 	'uses'=> 'VideoController@search'
 ));
+//----------------------------------------------------------------------------------------
+//--------------------------------------------------/RUTAS CONTROLADOR VIDEOS -------------
+//----------------------------------------------------------------------------------------
 
 /*------------BORRAR-CACHE------------------*/
 /* Esta ruta nos permite borra el cache de Laravel
@@ -154,6 +160,10 @@ Route::get('/clear-cache',function(){
 	$code = Artisan::call('cache:clear');
 });
 
+//----------------------------------------------------------------------------------------
+//--------------------------------------------------RUTAS CONTROLADOR USUARIOS -------------
+//----------------------------------------------------------------------------------------
+
 /*------------CANAL-USUARIO------------------*/
 //El user_id es obligatorio
 Route::get('/canal/{user_id}',array(
@@ -161,7 +171,34 @@ Route::get('/canal/{user_id}',array(
 	'uses'=> 'UserController@channel'
 ));
 
+/*------------EDITAR PERFIL------------------*/
+/*Creamos la ruta para editar el perfil del usuario  y le pasamos el parametro de user_id*/
+Route::get('/editar-perfil/{id}', array(
+	//Este va a ser el nombre de la ruta
+	'as' => 'editProfile', 
+	//Uso el AUTH para que solo pueda crear videos si estoy identificados
+	'middleware'=> 'auth',
+	//Ahora le indico que clase y que controlador(accion) va a utilizar
+	'uses' => 'UserController@edit'
+));
+
+/*------------GUARDAR-UPDATE------------------*/
+/*Creamos la ruta para guardar el video una vez creado*/
+Route::post ('/update-user/{id}', array(
+	//Este va a ser el nombre de la ruta
+	'as' => 'updateUser', 
+	//Uso el AUTH para que solo pueda crear videos si estoy identificados
+	'middleware'=> 'auth',
+	//Ahora le indico que clase y que controlador(accion) va a utilizar
+	'uses' => 'UserController@update'
+));
+/*---
+//----------------------------------------------------------------------------------------
+//--------------------------------------------------/RUTAS CONTROLADOR USUARIOS -------------
+//----------------------------------------------------------------------------------------
+
 /////********CONTACTO***********////
 Route::get('/contacto', function () {
 	    return view('contacto');
 });
+

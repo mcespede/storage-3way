@@ -23,15 +23,11 @@
   <!-- Con este link cargamos la configuracion del bootstrap.min.css, con todos los defaults-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-  <!-- Estos scripts son para tranajar con Jquery, y los menus interactivos como el top menu-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <!--------------------------------------- -->
+  <!--------------------------------------- -->
 </head>
 
 <!------------------------------------------------------------------------------------- -->
 <body>
-
     <!--------------------------MAIN---------------------------------------- -->
     <div id="app">
 <!--------------------------TOP-NAVIGATION-BAR----------------------------------------->
@@ -137,10 +133,11 @@
                                             {{ csrf_field() }}
                                         </form>
                                         <!-- --------- /1-LOGOUT --------------->
-
-                                        <!-- --------- 2-USER-ACCOUNT --------------->
-
-                                        <!-- --------- /2-OPCION --------------->
+                                         <!-- Para que el titulo me lleve al perfil tenemos que pasarle el nombre de la ruta y el parametro del [id] que estamos recorriendo en este preciso instante-->
+                                    </li>
+                                    <li>
+                                        <!-- Como estamos en la plantilla principal el llamado a las propiedades del ojeto user se hacen diferente. So se puede utilizar el objeto userProfile que creamos en el controlador porque no funciona.Tenemos que cojer las propiedades del Auth::user -->
+                                        <a href="{{route('editProfile',['id' =>Auth::user()->id]) }}">Perfil</a>
                                     </li>
                                 </ul>
                                 <!-- ---------/OPCIONES-MENU --------------->

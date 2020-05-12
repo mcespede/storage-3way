@@ -1,4 +1,3 @@
-<hr/>
 <h4>Comentarios</h4>
 <!--Aqui le pones la ACTION para que utilice la ruta URL  para guardar comentarios-->
 
@@ -10,7 +9,6 @@
  @endif
 @if(Auth::check())
 <form class="col-md-4" method="POST" action="{{url('/comment') }}">
-<hr/>
 
 	{!! csrf_field() !!}
 	<!--HIDDEN para pasar el Id del video donde se va a añadir el comentario-->
@@ -23,7 +21,7 @@
 </form>
 <!-- Este clear fix lo agrego para limpiar lo flotado y separar el boton de enviar con los comentarios -->
 <div class="clearfix"></div>
-<hr/>
+<br>
 @endif
 
 <!------------------------------------------------------------------------ -->
