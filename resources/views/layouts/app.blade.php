@@ -87,8 +87,8 @@
                         <!-- Authentication Links -->
                         <!-- SI no estamos identificados nos muestra el login y registro -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                            <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span>Sign up</a></li>
 
                         <!-- SI  estamos identificados nos muestra la pagina de USUARIO -->
                         @else

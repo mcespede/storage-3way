@@ -63,6 +63,8 @@
                 margin-bottom: 30px;
             }
         </style>
+            <!-- Este es importante para que funciones los Glyphicons.Por algun motivo solo asi me funciona -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -71,8 +73,8 @@
                     @if (Auth::check())
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
+                        <a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in"></span>Login</a>
+                        <a href="{{ url('/register') }}"><span class="glyphicon glyphicon-user"></span>Sign-up</a>
                     @endif
                 </div>
             @endif
