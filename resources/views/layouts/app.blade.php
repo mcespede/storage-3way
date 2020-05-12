@@ -27,6 +27,7 @@
 
     <!--------------------------MAIN---------------------------------------- -->
     <div id="app">
+<!--------------------------TOP-NAVIGATION-BAR----------------------------------------->
         <nav class="navbar navbar-default navbar-static-top">
 
             <!--------------------------TOP-BAR---------------------------------------- -->
@@ -59,12 +60,14 @@
                 <!--------------------------LEFT-HEADER---------------------------------------- -->
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
 
-                    <!-- ----------- Left Side Of Navbar ----------- -->
+            <!-- ----------- Left Side Of Navbar ----------- -->
                     <ul class="nav navbar-nav">
                         &nbsp;
                     </ul>
                     <!-- -------------SEARCH-BAR ------------------>
                     <!-- Aqui añadimos la ruta de buscar para funcione con el controlador.-->
+
+
                     <form class="navbar-form navbar-left" role="search" action="{{url('/buscar')}}">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Que quieres ver?" name="search">
@@ -75,11 +78,11 @@
                     </form>
                     <!-- -------------/SEARCH-BAR ------------------>
                     
-                    <!-- ----------- /Left Side Of Navbar ----------- -->
+            <!-- ----------- /Left Side Of Navbar ----------- -->
 
-                    <!-- ----------- -------------------------------- -->
 
-                    <!-- ----------- Right Side Of Navbar----------- -->
+
+            <!-- ----------- Right Side Of Navbar----------- -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         <!-- SI no estamos identificados nos muestra el login y registro -->
@@ -129,16 +132,43 @@
                             </li>
                         @endif
                     </ul>
-                    <!-- ----------- /Right Side Of Navbar----------- -->
+            <!-- ----------- /Right Side Of Navbar----------- -->
                 </div>
                 <!--------------------------/LEFT-HEADER---------------------------------------- -->
 
             </div>
             <!--------------------------TOP-BAR---------------------------------------- -->
         </nav>
+<!--------------------------/TOP-NAVIGATION-BAR----------------------------------------->
 
-        @yield('content')
+<!--------------------------TOP-TAB-MENU----------------------------------------->
+        <ul class="nav nav-tabs col-md-10 col-md-offset-1">
+            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+            <li><a data-toggle="tab" href="#menu1">Videos</a></li>
+            <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+            <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+          </ul>
 
+          <div class="tab-content col-md-10 col-md-offset-1">
+            <div id="home" class="tab-pane fade in active">
+              <h3></h3>
+                @yield('content')
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <h3></h3>
+                @yield('content')
+            </div>
+            <div id="menu2" class="tab-pane fade">
+              <h3>Menu 2</h3>
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+            </div>
+            <div id="menu3" class="tab-pane fade">
+              <h3>Menu 3</h3>
+              <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+          </div>
+<!--------------------------/TOP-TAB-MENU----------------------------------------->
+        
         <footer class="col-md-10 col-md-offset-1">
             <hr/>
             Curso de preparacion de laravel Mauro Cespedes 2020
