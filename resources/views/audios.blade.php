@@ -10,13 +10,11 @@
                         {{session('message')}}
                     </div>
                 @endif
-
-                
             <!-----------------------------------------> 
         </div>
 
         <div class="col-md-4">
-          @include('layouts.sideMenuHome')
+          @include('audio.sideMenuAudio')
         </div>
 
     </div>

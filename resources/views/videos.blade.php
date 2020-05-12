@@ -16,7 +16,7 @@
         </div>
 
         <div class="col-md-4">
-          @include('layouts.sideMenuHome')
+          @include('video.sideMenuVideos')
         </div>
 
     </div>

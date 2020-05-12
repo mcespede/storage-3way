@@ -17,7 +17,7 @@
         </div>
 
         <div class="col-md-4">
-          @include('layouts.sideMenuHome')
+          @include('documents.sideMenuDocs')
         </div>
 
     </div>
