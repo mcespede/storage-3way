@@ -91,11 +91,11 @@ public function update($id, Request $request){
     //Ahora lo que tenemos que hacer es recojer los ficheros de imagen y video para guradarlos en la base de datos
     //Creo la variable image que me recoja el archivo que que me llega por la request , en este caso image
     
-    //$image = $request->file('image');
+    $image = $request->file('image');
     // Entonces comprobamos si la imagen nos llega
-    //if ($image){
+    if ($image){
         //********OJO*************//
-         //Antes de actualizar el video tenemos que eliminar el registro anterior para que La imagen no se reporduzca una y otra vez. Es decir si no elimino el registro cada vez que se actualize la imagen se crea una copia y nos satura la base de datos
+         //Antes de actualizar la imagen tenemos que eliminar el registro anterior para que La imagen no se reporduzca una y otra vez. Es decir si no elimino el registro cada vez que se actualize la imagen se crea una copia y nos satura la base de datos
          //Storage::disk('images')->delete($video->image);
          //*************************//
          //Si nos llega recojemos el path de la imagen

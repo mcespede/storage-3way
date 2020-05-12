@@ -83,3 +83,12 @@ height: auto;
   display: none;
 }*/
 /****************/TOP-MENU-LINKS-CENTRO /******************************************/
+
+.profile-image{
+  width: 100%;
+height: auto; 
+}
+.panel-edicion-user{
+padding: 10px;
+
+}
