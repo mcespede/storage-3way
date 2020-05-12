@@ -20,7 +20,7 @@
         </div>
 
         <div class="col-md-4">
-          @include('layouts.sideMenu')
+          @include('layouts.sideMenuHome')
         </div>
 
     </div>
