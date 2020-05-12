@@ -143,30 +143,41 @@
 
 <!--------------------------TOP-TAB-MENU----------------------------------------->
         <ul class="nav nav-tabs col-md-10 col-md-offset-1">
-            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-            <li><a data-toggle="tab" href="#menu1">Videos</a></li>
-            <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-            <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
-          </ul>
 
-          <div class="tab-content col-md-10 col-md-offset-1">
-            <div id="home" class="tab-pane fade in active">
-              <h3></h3>
-                @yield('content')
+            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+            <li><a data-toggle="tab" href="#videos">Videos</a></li>
+            <li><a data-toggle="tab" href="#audios">Audios</a></li>
+            <li><a data-toggle="tab" href="#docs">Docs</a></li>
+
+        </ul>
+
+            <div class="tab-content col-md-10 col-md-offset-1">
+
+                <div id="home" class="tab-pane fade in active">
+
+                    <h3></h3>
+                    @yield('content')
+                </div>
+
+                <div id="videos" class="tab-pane fade">
+
+                     <h3></h3>
+                     @include('videos')
+                </div>
+
+                <div id="audios" class="tab-pane fade">
+
+                    <h3></h3>
+                    @include('audios')
+                </div>
+
+                <div id="docs" class="tab-pane fade">
+                    
+                    <h3> </h3>
+                    @include('docs')
+                </div>
+
             </div>
-            <div id="menu1" class="tab-pane fade">
-                <h3></h3>
-                @yield('content')
-            </div>
-            <div id="menu2" class="tab-pane fade">
-              <h3>Menu 2</h3>
-              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-            </div>
-            <div id="menu3" class="tab-pane fade">
-              <h3>Menu 3</h3>
-              <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-            </div>
-          </div>
 <!--------------------------/TOP-TAB-MENU----------------------------------------->
         
         <footer class="col-md-10 col-md-offset-1">
