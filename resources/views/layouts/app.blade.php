@@ -20,7 +20,12 @@
     <!-- Cargamos el archivo de CSS particular que tenemos dentro del storage en la carpeta CSS que creamos. Utilizo un URL y la ruta ruta donde tengo el ASSET -->
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/style.css')}}"/>
 
-    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/contact-form.css')}}"/>
+  <!-- Con este link cargamos la configuracion del bootstrap.min.css, con todos los defaults-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <!-- Estos scripts son para tranajar con Jquery, y los menus interactivos como el top menu-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!--------------------------------------- -->
 </head>
 
@@ -79,12 +84,18 @@
                     <!-- -------------/SEARCH-BAR ------------------>
                     
             <!-- ----------- /Left Side Of Navbar ----------- -->
-                    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Perfil</a></li>
-      <li><a href="{{URL('/contacto')}}">Contacto</a></li>
-    </ul>
 
+                    <!-- -------------MENU-CENTRAL ------------------>
+                    <!--Este menu esta optimizado para colapsar de buan forma en moviles-->
+                    <div>
+                      <ul class="nav navbar-nav">
+                        <li ><a href="#">Home</a></li>
+                        <li><a href="#">Page 1</a></li>
+                        <li><a href="#">Page 2</a></li>
+                      </ul>
+
+                    </div>
+                    <!-- -------------/MENU-CENTRAL ------------------>
 
             <!-- ----------- Right Side Of Navbar----------- -->
                     <ul class="nav navbar-nav navbar-right">
