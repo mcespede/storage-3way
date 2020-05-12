@@ -160,3 +160,8 @@ Route::get('/canal/{user_id}',array(
 	'as'=> 'channel',
 	'uses'=> 'UserController@channel'
 ));
+
+/////********CONTACTO***********////
+Route::get('/contacto', function () {
+	    return view('contacto');
+});

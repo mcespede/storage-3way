@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Videos Laravel') }}</title>
 <!------------------------------------------- -->
     <!---------------- Styles ---------->
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Este es importante para que funciones los Glyphicons.Por algun motivo solo asi me funciona -->
@@ -18,8 +19,9 @@
 
     <!-- Cargamos el archivo de CSS particular que tenemos dentro del storage en la carpeta CSS que creamos. Utilizo un URL y la ruta ruta donde tengo el ASSET -->
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/style.css')}}"/>
+
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/contact-form.css')}}"/>
     <!--------------------------------------- -->
-    
 </head>
 
 <!------------------------------------------------------------------------------------- -->
@@ -66,8 +68,6 @@
                     </ul>
                     <!-- -------------SEARCH-BAR ------------------>
                     <!-- Aqui añadimos la ruta de buscar para funcione con el controlador.-->
-
-
                     <form class="navbar-form navbar-left" role="search" action="{{url('/buscar')}}">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Que quieres ver?" name="search">
@@ -79,7 +79,11 @@
                     <!-- -------------/SEARCH-BAR ------------------>
                     
             <!-- ----------- /Left Side Of Navbar ----------- -->
-
+                    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Perfil</a></li>
+      <li><a href="{{URL('/contacto')}}">Contacto</a></li>
+    </ul>
 
 
             <!-- ----------- Right Side Of Navbar----------- -->
