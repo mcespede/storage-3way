@@ -19,10 +19,11 @@ use App\Comment;
 use App\User;
 class UserController extends Controller
 {
-   /*---------CANAL DE USUARIO ----------*/
+//*******************************************//
+/*---------CANAL DE USUARIO-VIDEOS ----------*/
    //Aqui vamos a capturar toda la informacion del usuario que nos llegue por un parametro de la URL
    public function channel($user_id){
-   		// A traves del user_id (que llega por la URL) solicitamos al modelo USER toda la inforamcion del OBJETO del usuario 
+   		// A traves del user_id (que llega por la URL) solicitamos al modelo USER toda la informacion del OBJETO del usuario 
    		$user = User::find($user_id);
 
    		/******SI NO EXISTE EL USUARIO **************/
@@ -40,17 +41,18 @@ class UserController extends Controller
    		));
    }
 
+//*******************************************//
 // *******************************************//
 // ---------EDITAR Usuario --------//
 //Recibo la variable ID del usuario por URL
 public function edit($id){
      //Lo primero es conseguir una variable del usuario identificado
     $user = \Auth::user();
-    //Creamos una variable userProfile para conseguri el objeto del ususario que estamos intentando editar. Utilizamos FIndOrFail para que nos devuelva un error en caso de que no exist aen la base de datos
+    //Creamos una variable userProfile para conseguir el objeto del ususario que estamos intentando editar. Utilizamos FIndOrFail para que nos devuelva un error en caso de que no exist aen la base de datos
     //Esta variable de userProfile es la que vamos a utilizar en el formulario para conseguir cada campo
     $userProfile = User::findOrFail($id);
 
-    //Ahora tenenmos que comprobar si el usuario existe y el que solamente cuando estemos identificados como el ususario dueño del video podamos usarlo. SI otro lo intenta no va a poder
+    //Ahora tenenmos que comprobar si el usuario existe y el que solamente cuando estemos identificados como el ususario dueño perfil podamos usarlo. SI otro lo intenta no va a poder
     /* 1- Si el usuario existe
        2-Si el ID que me llega por URL (userProfile) es igual al ID del usuario identificado
    */
@@ -66,8 +68,10 @@ public function edit($id){
     }
     //Ahora es necesario crear la vista de Edit
 }
+
 //*******************************************//
-// ---------ACTUALIZAR VIDEO EN BD--------//
+//*******************************************//
+// ---------ACTUALIZAR USUARIO EN BD--------//
 //Recibo la variable ID del usuario por URL, y tambien le paso la request para poder recibir los parametro que me lleguen por POST
 public function update($id, Request $request){
      ///Lo primero que vamos a hacer es validar el formulario y le pasamos la request para que recoja todos los datos que llegan por POST. Ademas le vamos a pasar un array con las reglas de validacion.
@@ -75,6 +79,7 @@ public function update($id, Request $request){
             'name' =>'required ',
             'surname' =>'required',
             'alias' =>'required | min:5',
+
     ));
 
     //Ahora toca conseguir el objeto del usuario, con un FIND
@@ -82,36 +87,45 @@ public function update($id, Request $request){
     //Tambien vamos a conseguir el usuario identificado
     $user = \Auth::user();
 
-    //Ahora le asigno los valores a cada una de las propuedades del objeto del usuario.
+    //Ahora le asigno los valores a cada una de las propiedades del objeto del usuario.
     $userProfile->id = $user->id;
     $userProfile->name = $request->input('name');
     $userProfile->surname = $request->input('surname');
     $userProfile->alias = $request->input('alias');
 
-    //Ahora lo que tenemos que hacer es recojer los ficheros de imagen y video para guradarlos en la base de datos
-    //Creo la variable image que me recoja el archivo que que me llega por la request , en este caso image
-    
+    // -----  UPLOAD IMAGE ----//
+    //Antes de salvar tenemos que recoger el fichero de la request que se llama IMAGE
     $image = $request->file('image');
     // Entonces comprobamos si la imagen nos llega
     if ($image){
-        //********OJO*************//
-         //Antes de actualizar la imagen tenemos que eliminar el registro anterior para que La imagen no se reporduzca una y otra vez. Es decir si no elimino el registro cada vez que se actualize la imagen se crea una copia y nos satura la base de datos
-         //Storage::disk('images')->delete($video->image);
-         //*************************//
-         //Si nos llega recojemos el path de la imagen
-        //Obtenemos el nombre del fichero temporal
-        //Le concateno time() para evitar tener el mismo archivo
-        // $image_path = time().$image ->getClientOriginalName();
-        //Ahora tenemos que utilizar el OBJETO storage y el metodo DISK para guardar todo dentro de la carpeta IMAGES el objeto $image que acabamos de conseguir
-        // \Storage::disk('images')->put($image_path,\File::get($image));
-        //Por ultimo asignamos al objeto IMAGE el valor del $image_path
-         //$video->image = $image_path;
-    //}
 
-///Una vez que todo esto este listo ya podemos hacer un UPDARe en la base de datos.
+      //********OJO*************//
+      //Antes de actualizar la imagen tenemos que eliminar el registro anterior para que La imagen no se reporduzca una y otra vez. Es decir si no elimino el registro cada vez que se actualize la imagen se crea una copia y nos satura la base de datos
+      Storage::disk('avatars')->delete($userProfile->image);
+      //*************************//
+      //Si nos llega recojemos el path de la imagen
+      //Obtenemos el nombre del fichero temporal
+      //Le concateno time() para evitar tener el mismo archivo
+      $image_path = time().$image ->getClientOriginalName();
+      //Ahora tenemos que utilizar el OBJETO storage y el metodo DISK para guardar todo dentro de la carpeta AVATARS el objeto $image que acabamos de conseguir
+      \Storage::disk('avatars')->put($image_path,\File::get($image));
+      //Por ultimo asignamos al objeto IMAGE el valor del $image_path
+      $userProfile->image = $image_path;
+    }
+    
     $userProfile->update();
-
-    return redirect()->route('home')->with(array('message'=>'Tu perfile se ha actualizado correctamente'));
+    return redirect()->route('home')->with(array('message'=>'Tu perfil se ha actualizado correctamente'));
     //Finalmente ceramos la ruta.
 }
+
+    // ---------GET-IMAGEN --------//
+    /* Este metodo recibo por URL el nombre del fichero*/
+    public function getImage($filename){
+      //Creamos una variable $file para acceder al STORAGE y con el metodo (disk) le indicamos en que carpeta esta nuestra imagen. COn el metodo get le indicamos cual fichero queremos. CUAL?. Pues el que nos llegue por parametro $filename
+      $file = Storage::disk('avatars')->get($filename);
+      //POr ultimo regresamos un response con un $file que nos devuelve el fichero en si
+      return new Response($file,200);
+      /* Ahora necesitamos crear una ruta para este metodo en web.php*/
+    }
+//*******************************************//
 }

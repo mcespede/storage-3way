@@ -43,7 +43,7 @@ Route::get('/home', array(
 ));
 
 //----------------------------------------------------------------------------------------
-//--------------------------------------------------RUTAS CONTROLADOR VIDEOS -------------
+//------------------RUTAS CONTROLADOR VIDEOS ---------------------------------------------
 //----------------------------------------------------------------------------------------
 
 
@@ -92,6 +92,8 @@ Route::get('/video-file/{filename}', array(
 //Que controlador va a utilizar y que metodo dentro de ese controlador
 	'uses' =>'VideoController@getVideo'
 ));
+
+
 
 /*------------ADD-COMMENT------------------*/
 //Indicamos el nombre de la ruta y metodo que va a cargar
@@ -149,7 +151,7 @@ Route::get('/buscar/{search?}/{filter?}',array(
 	'uses'=> 'VideoController@search'
 ));
 //----------------------------------------------------------------------------------------
-//--------------------------------------------------/RUTAS CONTROLADOR VIDEOS -------------
+//----------------/RUTAS CONTROLADOR VIDEOS ---------------------------------------------
 //----------------------------------------------------------------------------------------
 
 /*------------BORRAR-CACHE------------------*/
@@ -161,7 +163,7 @@ Route::get('/clear-cache',function(){
 });
 
 //----------------------------------------------------------------------------------------
-//--------------------------------------------------RUTAS CONTROLADOR USUARIOS -------------
+//-------------------RUTAS CONTROLADOR USUARIOS ------------------------------------------
 //----------------------------------------------------------------------------------------
 
 /*------------CANAL-USUARIO------------------*/
@@ -180,6 +182,15 @@ Route::get('/editar-perfil/{id}', array(
 	'middleware'=> 'auth',
 	//Ahora le indico que clase y que controlador(accion) va a utilizar
 	'uses' => 'UserController@edit'
+));
+
+/*------------GET-IMAGE------------------*/
+//A la ruta le tengo que pasar el parametro que llega obligatoriamente. 
+Route::get('/avatar/{filename}', array(
+//Como segundo parametro le paso un array con el nombre que va a tenr la ruta
+	'as' => 'imageProfile',
+//Que controlador va a utilizar y que metodo dentro de ese controlador
+	'uses' =>'UserController@getImage'
 ));
 
 /*------------GUARDAR-UPDATE------------------*/
@@ -201,4 +212,3 @@ Route::post ('/update-user/{id}', array(
 Route::get('/contacto', function () {
 	    return view('contacto');
 });
-

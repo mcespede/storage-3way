@@ -21,7 +21,7 @@ class Video extends Model
     	return $this -> hasMany('App\Comment')->orderBy('id','desc');
     }
     //RELACION MANY TO ONE
-    // Me saca el objeto del usuario . EL objeto completo del ususario que ha creado el video
+    // Me saca el objeto del usuario . EL objeto completo del usuario que ha creado el video
     public function user(){
     	//En este caso necesito definir en que campo se va a relacionar, que fue lo que hicimos al crear las Foreing keys en la table.
     	//Es decir que dentro de la propiedad USER va a cargar todo el objeto del usuario que se identifique con el user_id.

@@ -13,18 +13,15 @@
 			<!---------------------------BODY---------------------------------------->
 			<div class="panel-body">
 				<!----------------------IMAGE-FORM---------------------------------------->
-				<div class="video-image-thumb col-md-4 pull-left">
-                     <!--Le meto un video-image-mask para poder manipularla desde CSS-->
-                    <!---------------FORM----------------->
-                    <form action="{{route('updateUser',['id'=>$userProfile->id])}}" method="post" enctype="multipart/form-data">
+				<div class=" col-md-4 pull-left">
+					<!--------MINIATURA----------------->
+                   <!-- Para mostrar las imagenes de cada video hacemos un if para comprobar que realmente existen en el disco. Con (has) verifica-->
+                    @if(Storage::disk('avatars')->has($userProfile->image))
 
-                      <div class="profile-image">
-                            <!-- Le concateno a la ruta minitura la imagen que quiero ver, en este caso la que pertenezca al fichero que recibo por URL. Tambien le ponemos una clase para poder reducir su tamaño con CSS file-->
-                            <img class="image-responsive" src="/profileDefaultImage.jpg"/>
-                            <input type="file" class="form-control" id="image" name="image"/>
-                       </div>
-                   	</form>
-                   	<!---------------FORM----------------->
+                            <!-- Le concateno a la ruta minitura la imagen que quiero ver, en este caso la que pertenezca al fichero que recibo por URL. Tambien le ponemos una clase  de bootStrap (200X200)-->
+                            <img src="{{url('/avatar/'.$userProfile->image)}}" class="img-thumbnail" />              
+                    @endif
+
                 </div>
                 <!----------------------/IMAGE-FORM---------------------------------------->
 
@@ -83,6 +80,11 @@
 					<div class="form-group">
 						<label for="update">Última actualización</label>
 						<input readonly type="text" class="form-control" id="update" name="member" value="{{\FormatTime::LongTimeFilter($userProfile->updated_at)}}"/>						 
+					</div>
+	<!----------------------------------------------------------------------------------------------->
+						<div class="form-group">
+						<label for="update">Cambiar foto</label>
+						<input type="file" class="form-control" id="image" name="image"/>						 
 					</div>
 	<!----------------------------------------------------------------------------------------------->
 					<!-- ----/FORM-GROUPS ----- -->

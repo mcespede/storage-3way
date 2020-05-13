@@ -85,8 +85,8 @@
                     <!--Este menu esta optimizado para colapsar de buan forma en moviles-->
                     <div>
                       <ul class="nav navbar-nav">
-                        <li ><a href="#">Home</a></li>
-                        <li><a href="#">Page 1</a></li>
+                        <li ><a href="#"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-envelope"></span>Page 1</a></li>
                         <li><a href="#">Page 2</a></li>
                       </ul>
 
@@ -107,15 +107,19 @@
                             <!-- NEW-VIDEO -->
                             <!-- Es usuario identificado puede subir nuevos videos -->
                             <li>
-                                <a href="{{route('createVideo')}}"> Subir Video</a>
+                                <a href="{{route('createVideo')}}"> <span class="glyphicon glyphicon-circle-arrow-up">-</span>Subir Video</a>
                             </li>
                             <!-- /NEW-VIDEO -->
 
+                            
+                                <!-- Agregamos para que se vea el Alias registrado-->
+                                {{ Auth::user()->alias }}                                 
+                            
+
+                           
                             <!-- Tendre un dropdown con el nombre del USUARIO identificado -->
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <!-- Agregamos para que se vea el Alias registrado-->
-                                    {{ Auth::user()->alias }} <span class="caret"></span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span>
                                 </a>
 
                                 <!-- ---------/OPCIONES-MENU --------------->

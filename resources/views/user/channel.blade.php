@@ -8,8 +8,7 @@
         <!----------------------------------------->
       	<div class="container">
    	         		<!--Vamos a saber lo que estamos buscando--->
-					<h2>Canal de {{$user->name.' '.$user->surname}}</h2>     				
-	
+					<h2>Canal de {{$user->name.' '.$user->surname.' '.$user->surname}}</h2>     				
 
 			<div class="clearfix"></div>
 	        @include('video.videosList')
