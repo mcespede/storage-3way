@@ -85,8 +85,8 @@
                     <!--Este menu esta optimizado para colapsar de buan forma en moviles-->
                     <div>
                       <ul class="nav navbar-nav">
-                        <li ><a href="#"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-envelope"></span>Page 1</a></li>
+                        <li ><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-envelope"></span></a></li>
                         <li><a href="#">Page 2</a></li>
                       </ul>
 
@@ -95,11 +95,12 @@
 
             <!-- ----------- Right Side Of Navbar----------- -->
                     <ul class="nav navbar-nav navbar-right">
+
                         <!-- Authentication Links -->
                         <!-- SI no estamos identificados nos muestra el login y registro -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-                            <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span>Sign up</a></li>
+                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
 
                         <!-- SI  estamos identificados nos muestra la pagina de USUARIO -->
                         @else
@@ -112,14 +113,10 @@
                             <!-- /NEW-VIDEO -->
 
                             
-                                <!-- Agregamos para que se vea el Alias registrado-->
-                                {{ Auth::user()->alias }}                                 
-                            
-
-                           
+                            <!-- Agregamos para que se vea el Alias registrado-->
                             <!-- Tendre un dropdown con el nombre del USUARIO identificado -->
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>{{ Auth::user()->alias }}
                                 </a>
 
                                 <!-- ---------/OPCIONES-MENU --------------->
@@ -146,6 +143,24 @@
                                 </ul>
                                 <!-- ---------/OPCIONES-MENU --------------->
                             </li>
+
+                            <!------------CONFIGURACION -------- -->
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span>
+                                </a>
+
+                                <!-- ---------/OPCIONES-MENU --------------->
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href=""> Eins </a> 
+                                    </li>
+                                    <li>
+                                        <a href=""> Zwei </a>
+                                    </li>
+                                </ul>
+                                <!-- ---------/OPCIONES-MENU --------------->
+                            </li>
+                            <!------------/CONFIGURACION -------- -->
                         @endif
                     </ul>
             <!-- ----------- /Right Side Of Navbar----------- -->
@@ -155,46 +170,79 @@
             </div>
             <!--------------------------TOP-BAR---------------------------------------- -->
         </nav>
-<!--------------------------/TOP-NAVIGATION-BAR----------------------------------------->
-
+<!-------------------------------------------------------------------------------------->
+<!-------------------------------------------------------------------------------------->
+<!-------------------------------------------------------------------------------------->
 <!--------------------------TOP-TAB-MENU----------------------------------------->
-        <ul class="nav nav-tabs col-md-10 col-md-offset-1">
 
-            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-            <li><a data-toggle="tab" href="#videos">Videos</a></li>
-            <li><a data-toggle="tab" href="#audios">Audios</a></li>
-            <li><a data-toggle="tab" href="#docs">Docs</a></li>
+<!-- Aqui creo un menu con tabs para reccorrer el contenido del main page-->
 
-        </ul>
 
-            <div class="tab-content col-md-10 col-md-offset-1">
+           <ul class="nav nav-tabs col-md-10 col-md-offset-1">
+                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                <li><a data-toggle="tab" href="#videos">Videos</a></li>
+                <li><a data-toggle="tab" href="#docs">Docs</a></li>
 
-                <div id="home" class="tab-pane fade in active">
+            </ul>
+            <!-------------CONTAINER-WRAPPER----------------------->
+            <!-- Esto va a mantener todo el contenido de los tabs junto
+                 con el side maenu main ------------>
+            <div class="container">
+                <div class="row">
 
-                    <h3></h3>
-                    @yield('content')
-                </div>
+                    <!---------------TABS------------------------------>
+                    <!-- todas las TABS estaran dentro de un COL-MD-10-->
+                    <div class="tab-content col-md-8">
 
-                <div id="videos" class="tab-pane fade">
+                        <!--------HOME---------->
+                        <div id="home" class="tab-pane fade in active">
 
-                     <h3></h3>
-                     @include('videos')
-                </div>
+                            <h3></h3>
+                            @yield('content')
+                        </div>
 
-                <div id="audios" class="tab-pane fade">
+                        <!--------Videos---------->
+                        <div id="videos" class="tab-pane fade">  
+                            <div class="row">
+                                <!-- -------------SEARCH-BAR ------------------>
+                                <!-- Aqui añadimos la ruta de buscar para funcione con el controlador.-->
+                                <form class="navbar-form navbar-left" role="search" action="{{url('/buscar')}}">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Que quieres ver?" name="search">
+                                    </div>
+                                    <button type="submit" class="btn btn-success">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </form>
+                                <!-- -------------/SEARCH-BAR ------------------>                                
+                            </div>
 
-                    <h3></h3>
-                    @include('audios')
-                </div>
+                            <div class="row">
+                                 
+                            </div>
 
-                <div id="docs" class="tab-pane fade">
+                        </div>
+
+                        <!--------DOCS---------->
+                        <div id="docs" class="tab-pane fade">    
+
+                        </div>
                     
-                    <h3> </h3>
-                    @include('docs')
-                </div>
+                    </div>   
+                    <!---------------TABS------------------------------>
 
+                    <!--- Esto lo incluyo aqui porque se muestra en todas las vistas-->
+                    <div class="col-md-4">
+                            @include('layouts.mainSideMenu')
+                    </div> 
+
+                </div>
             </div>
+            <!-------------/CONTAINER-WRAPPER----------------------->
 <!--------------------------/TOP-TAB-MENU----------------------------------------->
+<!-------------------------------------------------------------------------------------->
+<!-------------------------------------------------------------------------------------->
+<!-------------------------------------------------------------------------------------->
         
         <footer class="col-md-10 col-md-offset-1">
             <hr/>

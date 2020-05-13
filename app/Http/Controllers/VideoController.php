@@ -107,7 +107,7 @@ class VideoController extends Controller
     // TEnemos que pasar el $video_ID que el el detalle del video que deseamos mostrar
 
     public function getVideoDetail ($video_id){
-        //Creamos una variable video que haga un FIND a la BD para conseguir el registro que deseamos mostrar. Esto lo podemos hacer con ELOQUENT y el metodo find- ÑLe solicitamos el video_id. Diferente como se hace con el QUERY builder
+        //Creamos una variable video que haga un FIND a la BD para conseguir el registro que deseamos mostrar. Esto lo podemos hacer con ELOQUENT y el metodo find- Le solicitamos el video_id. Diferente como se hace con el QUERY builder
         $video = Video::find($video_id);
         //Cargamos una vista que se llma video y un array con la infomracion del video a cargar
         return view('video.detail', array(
@@ -263,7 +263,7 @@ public function search($search = null, $filter = null){
         /**************SI PRESIONO EL BOTON SIN NINGUNA BUSQUEDA*************/
         //Si presiono el boton de busqueda sin nada nos redirige al listado principal en el HOME
         if (is_null($search)) {
-           return redirect()->route('home');
+           return redirect()->route('mainPage');
         }
         /*******************************************************************/
         //Esto es para que nos llegue un parametro limpia cuando nos redirija

@@ -34,6 +34,9 @@ Route::get('/', function () {
 
 // Esto es un middleware que verifica la Autenticacion del usuario
 Auth::routes();
+//----------------------------------------------------------------------------------------
+//------------------RUTAS CONTROLADOR HOME y (/) ---------------------------------------------
+//----------------------------------------------------------------------------------------
 
 //Esta ruta la vamos a utilizar para no se necesite authenticacion para ver los videos, pero si para modificarlos
 //En el homecontroller le quitamos la parte de la atenticacion y le ponemos el middleware web
@@ -41,6 +44,16 @@ Route::get('/home', array(
 	'as'=> 'home',
 	'uses'=> 'HomeController@index'
 ));
+
+/* Esta vista la creamos para poder visualizar los videos en la pagina main
+	bajo la vista de welcome(/) que viene por defecto en Laravel
+	Tengo que hacer lo mismo para cada categoria que desee importar */
+
+Route::get('/', array(
+	'as'=> 'mainPage',
+	'uses'=> 'HomeController@indexMain'
+));
+
 
 //----------------------------------------------------------------------------------------
 //------------------RUTAS CONTROLADOR VIDEOS ---------------------------------------------

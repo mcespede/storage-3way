@@ -8,7 +8,7 @@
                     <ul class="nav navbar-nav">
                         &nbsp;
                     </ul>
-                <h3>Videos Side Menu</h3>
+                <h3>Main Side Menu</h3>
             </div>
         </div>
         <div class="panel-body">
