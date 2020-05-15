@@ -76,6 +76,20 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+
+        'audios' => [
+            'driver' => 'local',
+            'root' => storage_path('app/audios'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        'docs' => [
+            'driver' => 'local',
+            'root' => storage_path('app/docs'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
 //--------------------------------------------------/
         's3' => [
             'driver' => 's3',

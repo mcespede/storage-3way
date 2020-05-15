@@ -2,9 +2,8 @@
 
 @section('content')
 <!------------------MAIN-CONTAINER----------------->
-<div class="container">
-	<!--------------MAIN-ROW------------->
-	<div class="row">
+   
+        <div class="col-md-12">
 		<h2>Crear un nuevo video</h1>
 
 		<!-- HR es una separacion para que se vea mejor -->
@@ -63,6 +62,6 @@
 	</div>
 	<!--------------/MAIN-ROW------------->
 
-</div>
+
 <!------------------/MAIN-CONTAINER----------------->
 @endsection

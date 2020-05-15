@@ -128,4 +128,17 @@ public function update($id, Request $request){
       /* Ahora necesitamos crear una ruta para este metodo en web.php*/
     }
 //*******************************************//
-}
+//*******************************************//
+// *******************************************//
+// ---------SHOW Usuario --------//
+
+    public function showUsers(){
+
+        $users = User::all();
+        /*Ahora le tengo que pasar la informacion a la vista, para eso le paso un array al VIEW*/
+        return view('user.users', compact('users'));
+    }
+    
+  }
+
+
