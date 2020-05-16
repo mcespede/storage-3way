@@ -30,7 +30,9 @@
             </a>
             <!-- -------------- /Branding Image ------------------->
 
-           @include('layouts.searchbars.videoBar') 
+           @include('layouts.searchbars.videoBar')
+           @include('layouts.searchbars.audioBar')
+           @include('layouts.searchbars.docBar') 
 
         </div>
         <!--------------------------/HEADER---------------------------------------- -->          

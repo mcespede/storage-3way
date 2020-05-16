@@ -9,19 +9,22 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 //Para poder almacenar en el Storage
 use Illuminate\Support\Facades\Storage;
+
 use Symfony\Component\HttpFoundation\Response;
 
 //Ahora importo los modelos
+use App\User;
 use App\Audio;
 use App\CommentAudio;
+
 
 class AudioController extends Controller
 {
 
 
 //*******************************************//
-    //-------------CREAR UN VIDEO------------------
-    //Simplemente una pagina que nos muetre los videos
+    //-------------CREAR UN AUDIO------------------
+    //Simplemente una pagina que nos muetre los Audios
 
     public function createAudio(){
     	return view('audio.createAudio');
@@ -39,7 +42,7 @@ class AudioController extends Controller
     		'title' =>'required | min:5',
     		'description'=> 'required',
     		//Los formatos en los que puede venir el audio
-    		'audio' => 'mimetypes:audio/mp3,mp4,ogg'
+    		'audio' => 'mimetypes:audio/mpeg,mp4,ogg'
 
     	]);
     	//Ahora vamos a guardar el audio en la base de datos
@@ -68,7 +71,7 @@ class AudioController extends Controller
     	$audio ->save();
 
     	//Cuando termino le hago una redireccion a HOME
-    	//Ademas añado una alerta que diga que el video se ha subido correctamente
+    	//Ademas añado una alerta que diga que el audio se ha subido correctamente
     	return redirect()->route ('home')->with(array(
     		'message'=> 'El audio se ha subido correctamente'
     	 ));
@@ -79,14 +82,14 @@ class AudioController extends Controller
 
 //*******************************************//
     // ----PAGINA DETALLE DEL AUDIO------//
-    // TEnemos que pasar el $video_ID que el el detalle del video que deseamos mostrar
+    // TEnemos que pasar el $audio_ID que el el detalle del audio que deseamos mostrar
 
     public function getAudioDetail ($audio_id){
         //Creamos una variable audio que haga un FIND a la BD para conseguir el registro que deseamos mostrar. Esto lo podemos hacer con ELOQUENT y el metodo find- Le solicitamos el audio_id. Diferente como se hace con el QUERY builder
         $audio = Audio::find($audio_id);
-        //Cargamos una vista que se llma video y un array con la infomracion del video a cargar
-        return view('audio.detail', array(
-            //Video va a llevar dentro todo el contenido de la variable $video
+        //Cargamos una vista que se llma audio y un array con la infomracion del audio a cargar
+        return view('audio.detailAudio', array(
+            //Audio va a llevar dentro todo el contenido de la variable $audio
             'audio' =>$audio
         //POr ultimo es necesario crear la vista para este metodo
         ));
@@ -108,13 +111,13 @@ class AudioController extends Controller
     public function delete($audio_id){
         //Lo primero es conseguir una variable del usuario identificado
         $user = \Auth::user();
-        //Ahora hacemos un find para conseguir el video que deseamos borrar
+        //Ahora hacemos un find para conseguir el audio que deseamos borrar
         $audio = Audio::find($audio_id);
-        //Tambien hacemos un find de los comentarios que deseamos borrar. Asegurarse de tener importado el modelo de comment
-        //Esto nos va a sacar todos los comentarios cuyo video_id sea el correspondiente
+        //Tambien hacemos un find de los comentarios que deseamos borrar. Asegurarse de tener importado el modelo de commentAudio
+        //Esto nos va a sacar todos los comentarios cuyo audio_id sea el correspondiente
         $comments = CommentAudio::where('audio_id',$audio_id)->get();
         $comments = CommentAudio::where('audio_id',$audio_id);
-        //Ahora tenenmos que comprobar si el usuario existe y el que solamente cuando estemos identificados como el ususario dueño del video podamos usarlo. SI otro lo intenta no va a poder
+        //Ahora tenenmos que comprobar si el usuario existe y el que solamente cuando estemos identificados como el ususario dueño del audio podamos usarlo. SI otro lo intenta no va a poder
         if($user && $audio->user_id == $user->id){
             //Antes de borrar el audio tenemos que borar los comentarios
             //Method delete does not exist----Para evitar este error hacemos un IF antes de borra comentarios para asegurarnos de que existan comentarios. Lo hacemos con un IF
@@ -128,7 +131,7 @@ class AudioController extends Controller
             }
             //Despues tenemos que eliminar los audios a nivel de disco fisico. Eliminarlos del Storage. Utilizamos el OBJETO  audio y la PROPIEDAD audio_path.
             Storage::disk('audios')->delete($audio->audio_path);
-            //Finamente eliminar el registro del video en la base de datos
+            //Finamente eliminar el registro del audio en la base de datos
             $audio->delete();
         }
         //Lo ultimo que hace este metodo es redirigirnos a HOME con el aaray de mensaje para que me diga si se elimino o no correctamente
@@ -146,10 +149,10 @@ public function edit($audio_id){
     //Creamos una variable audio para conseguir el objeto del audio que estamos intentando editar. Utilizamos FindOrFail para que nos devuelva un error en caso de que no exista en la base de datos
     $audio = Audio::findOrFail($audio_id);
 
-    //Ahora tenenmos que comprobar si el usuario existe y el que solamente cuando estemos identificados como el ususario dueño del audio podamos usarlo. SI otro lo intenta no va a poder
+    //Ahora tenemos que comprobar si el usuario existe y el que solamente cuando estemos identificados como el usuario dueño del audio podamos usarlo. SI otro lo intenta no va a poder
     if($user && $audio->user_id == $user->id){
-        //Devolvemos la vista edit dentro de la carpeta de videos
-        return view('audio.edit', array('audio' => $audio));
+        //Devolvemos la vista edit dentro de la carpeta de audios
+        return view('audio.editAudio', array('audio' => $audio));
     //Si esto no funcionara hacemos una redireccion a la HOME sin mensaje
     }else{
         return redirect()->route('home');
@@ -157,14 +160,14 @@ public function edit($audio_id){
     //Ahora es necesario crear la vista de Edit
 }
 //*******************************************//
-// ---------ACTUALIZAR VIDEO EN BD--------//
-//Recibo la variable ID del video por URL, y tambien le paso la request para poder recibir los parametro que me lleguen por POST
+// ---------ACTUALIZAR AUDIO EN BD--------//
+//Recibo la variable ID del audio por URL, y tambien le paso la request para poder recibir los parametro que me lleguen por POST
 public function update($audio_id, Request $request){
      ///Lo primero que vamos a hacer es validar el forrmulario y le pasamos la request para que recoja todos los datos que llegan por POST. Ademas le vamos a pasar un array con las reglas de validacion.
     $validate = $this->validate($request, array(
             'title' =>'required | min:5',
             'description'=> 'required',
-            //Los formatos en los que puede venir el video
+            //Los formatos en los que puede venir el audio
             'audio' => 'mimetypes:audio/mp3,mp4,ogg'
     ));
 
@@ -172,7 +175,7 @@ public function update($audio_id, Request $request){
     $audio = Audio::findOrFail($audio_id);
     //Tambien vamos a conseguir el usuario identificado
     $user = \Auth::user();
-    //Ahora le asigno los valores a cada una de las propuedades del objeto del video.
+    //Ahora le asigno los valores a cada una de las propuedades del objeto del audio.
     $audio->user_id = $user->id;
     $audio->title = $request->input('title');
     $audio->description = $request->input('description');
@@ -185,7 +188,7 @@ public function update($audio_id, Request $request){
 
     if($audio_file){
         //********OJO*************//
-        //Antes de actualizar el audio tenemos que eliminar el registro anterior para que el video no se reporduzca una y otra vez. Es decir si no elimino el registro cada vez que se actualize el audio se crea una copia y nos satura la base de dato.
+        //Antes de actualizar el audio tenemos que eliminar el registro anterior para que el audio no se reporduzca una y otra vez. Es decir si no elimino el registro cada vez que se actualize el audio se crea una copia y nos satura la base de dato.
         Storage::disk('audio')->delete($audio->audio_path);
         //*************************//
 
@@ -250,7 +253,7 @@ public function search($search = null, $filter = null){
     $order = 'desc';
     //En caso de que el filtro exista, es decir que no es NULL
     if (!is_null($filter)) {
-        //Hacemos el ordenamiento de los video de acuerdo a los criterios del filtro
+        //Hacemos el ordenamiento de los audio de acuerdo a los criterios del filtro
         //Ahora tenemos que hacer un acomprobarcion con el IF
         if ($filter == 'new') {
             $colum ='id';
@@ -269,7 +272,7 @@ public function search($search = null, $filter = null){
     /***************************************/
     //Vamos a hacer una QUERY , para que busque en el titulo la informacion
     //Cuando realicemos la busqueda, si el titulo es igual a lo que venga en SEARCH que nos de el resultado
-    //Sacame todos los video cuando el titulo contenga lo que hemos buscado
+    //Sacame todos los audio cuando el titulo contenga lo que hemos buscado
     //Los % los pongo para que me saque la coincidencias de la Primera letra y la Ultima, no solo el resultado completo
     
     $audios = Audio::where('title','LIKE','%'.$search.'%')
@@ -277,7 +280,7 @@ public function search($search = null, $filter = null){
                             ->orderBy($colum,$order)
                             ->paginate(5);
 
-    return view('audio.search', array(
+    return view('audio.searchAudio', array(
         'audios'=> $audios,
         'search'=> $search
     ));

@@ -254,7 +254,8 @@ public function update($video_id, Request $request){
 //Tambien pasamos el parametro filter para poder utilizarlo
 public function search($search = null, $filter = null){
 
-    //Si el parametro de SEARCH es nulo entonces le vamos a asignar un valor a search que es que que vienen en la request
+/*------------------------------------------------------------------*/
+    //Si el parametro de SEARCH es nulo entonces le vamos a asignar un valor a search que es el que vienen en la request
     if (is_null($search)) {
         //De esta forma siempre va a tener un valor que es el que ingresa en la barra de busqueda.
         //Esta es la variable que nos llega por get
@@ -263,7 +264,7 @@ public function search($search = null, $filter = null){
         /**************SI PRESIONO EL BOTON SIN NINGUNA BUSQUEDA*************/
         //Si presiono el boton de busqueda sin nada nos redirige al listado principal en el HOME
         if (is_null($search)) {
-           return redirect()->route('mainPage');
+           return redirect()->route('home');
         }
         /*******************************************************************/
         //Esto es para que nos llegue un parametro limpia cuando nos redirija
@@ -271,6 +272,8 @@ public function search($search = null, $filter = null){
         //Le pasamos el contenido que tiene la variable por GET
         return redirect()->route('videoSearch',array('search' =>$search));
     }
+
+/*------------------------------------------------------------------*/
 
     //-----FILTRO--------
     /*Si no existe el parametro FILTER es decir es NULO,

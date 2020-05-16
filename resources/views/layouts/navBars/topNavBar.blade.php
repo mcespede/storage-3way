@@ -16,6 +16,7 @@
   <a href="{{url('sistemas')}}" class="tab"> Sistemas </a>
   <a href="{{url('robotica')}}" class="tab"> Robótica </a>
   <a href="{{url('videos')}}" class="tab"> Videos </a>
+  <a href="{{url('audios')}}" class="tab"> Audios </a>
   <a href="{{url('documentos')}}" class="tab"> Documentos </a>
   <a href="{{url('sobre-mi')}}" class="tab"> Sobre mí</a>
 

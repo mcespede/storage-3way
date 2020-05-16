@@ -9,11 +9,11 @@
  @endif
 
 @if(Auth::check())
-<form class="col-md-4" method="POST" action="{{route('comment') }}">
+<form class="col-md-4" method="POST" action="{{route('commentDoc') }}">
 
 	{!! csrf_field() !!}
-	<!--HIDDEN para pasar el Id del video donde se va a añadir el comentario-->
-	<input type="hidden" name="video_id" value="{{$video->id}}" required/>
+	<!--HIDDEN para pasar el Id del doc donde se va a añadir el comentario-->
+	<input type="hidden" name="doc_id" value="{{$doc->id}}" required/>
 	<p>
 		<textarea class="form-control" name="body" required="">			
 		</textarea>
@@ -30,10 +30,10 @@
 <!------------------------------------------------------------------------ -->
 
 <!-- Ahora vamos a verificar si existen comentarios , y si existen que los muestre -->
-@if(isset($video ->comments))
+@if(isset($doc ->comments))
 <div id="comments-list">
 	<!-- Si existen los comentario que me los recorra todos -->
-	@foreach($video -> comments as $comment)
+	@foreach($doc -> comments as $comment)
 		<!-- VOy a ir mostrando cada comentario dentro de un aetiqueta -->
 		<div class="comment-item" col-md-12 pull-left>
 			<!-- -------PANEL-BOOTSTRAP------------->
@@ -47,12 +47,12 @@
 			<div class="panel-body">
 				{{$comment->body}}
 				<!-- -----BORRAR COMMENTARIOS  ----->
-				<!-- Los comentarios so los podra borrar la persona que creo los comentarios o el dueño del video. Si la persona hizo un comentario en un video que no es suyo tambien lo podra borrar. Es decir pueden borrar comentarios el creador del video y el creador del comentario-->
+				<!-- Los comentarios so los podra borrar la persona que creo los comentarios o el dueño del doc. Si la persona hizo un comentario en un doc que no es suyo tambien lo podra borrar. Es decir pueden borrar comentarios el creador del doc y el creador del comentario-->
 
 				<!-- Si el ID del USER autenticado en igual al ID del comentario podra borra el comentario -->
 
-				<!-- O si el usuario identificado en el que ha creado este video podra eliminar el comentario. Va a poder ver el boton -->
-				@if(Auth::check()&&(Auth::user()->id == $comment-> user->id || Auth::user()->id == $video-> user->id))
+				<!-- O si el usuario identificado en el que ha creado este doc podra eliminar el comentario. Va a poder ver el boton -->
+				@if(Auth::check()&&(Auth::user()->id == $comment-> user->id || Auth::user()->id == $doc-> user->id))
 					<!-- Podremos un boton y nos saca un overlay que nos pregunta si queremos borrar el comentario o no-->
 					<!-- Para ello utilizamos un OVERLAY de BOOTSTRAP -->
 					<!-- Esto es para que nos aparezca del lado derecho -->
@@ -79,7 +79,7 @@
             				<div class="modal-footer">
                 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 				<!-- Para poder borrar losc comentarios tengo que hacer un nuevo metodo en el controlador de comentarios. Le paso por parametro a la ruta el ID del comentario que deseo borrar--> 
-                				<a href="{{url('/delete-comment/'.$comment->id)}}" type="button" class="btn btn-danger">Eliminar</a>
+                				<a href="{{url('/delete-comment-doc/'.$comment->id)}}" type="button" class="btn btn-danger">Eliminar</a>
             				</div>
         					</div>
     					</div>

@@ -37,22 +37,14 @@ class HomeController extends Controller
         return view('home');
         */
         /*Tambien lo puedo hacer utilizando el modelo, de esta forma debo de importar el modelo VIDEO en el controlador. Tambien utilizo el ORDER BY para ordenar los videos de mas nuevo a mas antiguo*/
-        $videos = Video::orderBy('id','desc')-> paginate(5);
+        //$videos = Video::orderBy('id','desc')-> paginate(5);
         /*Ahora le tengo que pasar la informacion a la vista, para eso le paso un array al VIEW*/
 
         return view ('mainView/home',array(
             /*Creo un indice VIDEOS y le paso todos los videos, de esta forma ya tengo accesible todos los videos en la vista home*/
-            'videos' =>$videos
+            //'videos' =>$videos
         ));
 
     }
-
-    //----------------------------------------------------------------------------------------
-    //--------------------------------INDEX-MAIN ---------------------------------------------
-    //----------------------------------------------------------------------------------------
-    /*  Este metodo lo cree para poder mostrar la lista de videos en la pagina principal 
-        Para poder importar otras cosas tengo que importar los modelos
-        Ademas de crear las rutas en web.php
-    */
 
 }

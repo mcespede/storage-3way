@@ -1,9 +1,19 @@
+@extends('welcome')
 
-<div class="container">
 
-    <div class="row">
-        <div class="col-md-8">
+@section('encabezado')
+        <h4>Audios</h4>
+@endsection
+
+@section('contentMain')
+
+    @include('layouts.sectionAlert')
+
+    <div class="container">
+        <div class="row">
+
             <!----------------------------------------->
+            <div class="container">
                 <!-- Mostrar el mensaje cuando creo un nuevo video. Compruebo si existe mensaje-->
 
                 @if(session('message'))
@@ -12,14 +22,9 @@
                     </div>
                 @endif
 
-                
-            <!-----------------------------------------> 
+                @include('audio.audiosList')
+            </div>
+            <!----------------------------------------->
         </div>
-
-        <div class="col-md-4">
-          @include('documents.sideMenuDocs')
-        </div>
-
     </div>
-
-</div>
+@endsection

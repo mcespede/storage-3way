@@ -27,7 +27,7 @@
   				</div>
 
 			<div class="clearfix"></div>
-	        @include('video.videosList')       
+	        @include('doc.docsList')       
 
         <!----------------------------------------->     		
     </div>

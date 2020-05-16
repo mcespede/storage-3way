@@ -4,47 +4,33 @@
 use App\User;
 
 //----------------------------------------------------------------------------------------
-//------------------RUTAS CONTROLADOR VIDEOS (/) ---------------------------------------------
+//------------------RUTAS CONTROLADOR (/) ---------------------------------------------
 //----------------------------------------------------------------------------------------
+/*Para que sedespliegue la vista de todos las opciones del menu
+  del Landing page tenenmos que crear el controlador Landingpage
+  ahi van a estar los metodos que nos permiten acceder a las listas
+  y  a toda la informacion 
+  Cada ruta debe de tener un metodo detras*/
 
 Route::get('/', function () {
-
-	/*----------------------------------------------*/
-	/*------------PRUEBA DEL ORM ------------------*/
-	/*----------------------------------------------*/
-	/*
-	// Creo una variable video y hago un FIND
-	//Mediante el ORM saca todos los datos (VIDEO) que hay 
-	$videos=Video::all();
-	//Hago un FOR EACH para recorrer todos los datos que hay en la base de datos e ir sacando datos de cada uno
-	foreach ($videos as $video) {
-		//Dentro de cada interaccion defino los datos que deseo ver.
-		echo $video -> title.'<br/>';
-		echo $video -> user ->name.'<br/>';
-		echo $video -> user ->email.'<br/>';
-		//Ahora para ver la informacion detallada de cada uno de los comentario  en cada video hago otro for each
-		foreach ($video->comments as $comment) {
-			echo $comment-> body.'<br/>';
-		}
-		//Esto lo hago para poder verlo de forma separada
-		echo "<hr/";
-		//var_dump($video);
-	}
-	*/
-	/*----------------------------------------------*/
-	/*------------/PRUEBA DEL ORM ------------------*/
-	/*----------------------------------------------*/
     return view('welcome');
 });
 
+//--------LISTA DE VIDEOS------------//
 Route::get('/videos', array(
 	'as'=> 'videos',
 	'uses'=> 'LandingPage@videos'
 ));
-
-Route::get('/documentos', function () {
-    return view('mainView.documentos');
-});
+//--------LISTA DE AUDIOS------------//
+Route::get('/audios', array(
+	'as'=> 'audios',
+	'uses'=> 'LandingPage@audios'
+));
+//--------LISTA DE DOCS------------//
+Route::get('/documentos', array(
+	'as'=> 'docs',
+	'uses'=> 'LandingPage@docs'
+));
 
 Route::get('/robotica', function () {
     return view('mainView.robotica');
@@ -79,13 +65,16 @@ Route::get('/home', array(
 	'as'=> 'home',
 	'uses'=> 'HomeController@index'
 ));
-
-
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 //------------------RUTAS CONTROLADOR VIDEOS ---------------------------------------------
 //----------------------------------------------------------------------------------------
-
-
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 /*------------CREAR------------------*/
 /*Creamos la ruta hacia la pagina y utilizamos un array para pasarle los parametros que estaremos utilizando*/
 Route::get ('/crear-video', array(
@@ -190,7 +179,14 @@ Route::get('/buscar/{search?}/{filter?}',array(
 	'uses'=> 'VideoController@search'
 ));
 //----------------------------------------------------------------------------------------
-//----------------/RUTAS CONTROLADOR VIDEOS ---------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//------------------/RUTAS CONTROLADOR VIDEOS ---------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 
 /*------------BORRAR-CACHE------------------*/
@@ -200,9 +196,15 @@ Route::get('/buscar/{search?}/{filter?}',array(
 Route::get('/clear-cache',function(){
 	$code = Artisan::call('cache:clear');
 });
-
 //----------------------------------------------------------------------------------------
-//-------------------RUTAS CONTROLADOR USUARIOS ------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//------------------/RUTAS CONTROLADOR USERS ---------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 
 /*------------CANAL-USUARIO------------------*/
@@ -254,7 +256,14 @@ Route::get('/users', array(
 ));
 
 //----------------------------------------------------------------------------------------
-//--------------------/RUTAS CONTROLADOR USUARIOS -----------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//------------------/RUTAS CONTROLADOR USERS ---------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 
 /////********CONTACTO***********////
@@ -264,34 +273,40 @@ Route::get('/contacto', function () {
 
 
 //----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 //------------------RUTAS CONTROLADOR AUDIOS ---------------------------------------------
 //----------------------------------------------------------------------------------------
-
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 
 /*------------CREAR------------------*/
 /*Creamos la ruta hacia la pagina y utilizamos un array para pasarle los parametros que estaremos utilizando*/
 Route::get ('/crear-audio', array(
 	//Este va a ser el nombre de la ruta
 	'as' => 'createAudio', 
-	//Uso el AUTH para que solo pueda crear videos si estoy identificados
+	//Uso el AUTH para que solo pueda crear audios si estoy identificados
 	'middleware'=> 'auth',
 	//Ahora le indico que clase y que controlador(accion) va a utilizar
 	'uses' => 'AudioController@createAudio'
 ));
 
 /*------------GUARDAR------------------*/
-/*Creamos la ruta para guardar el video una vez creado*/
+/*Creamos la ruta para guardar el audio una vez creado*/
 Route::post ('/guardar-audio', array(
 	//Este va a ser el nombre de la ruta
 	'as' => 'saveAudio', 
-	//Uso el AUTH para que solo pueda crear videos si estoy identificados
+	//Uso el AUTH para que solo pueda crear audios si estoy identificados
 	'middleware'=> 'auth',
 	//Ahora le indico que clase y que controlador(accion) va a utilizar
 	'uses' => 'AudioController@saveAudio'
 ));
 
 /*------------PAGINA -AUDIO-----------------*/
-/* Le pasamos por URL el parametro obligatorio del video y un array con las caracteristicas del video*/
+/* Le pasamos por URL el parametro obligatorio del audio y un array con las caracteristicas del audio*/
 Route::get('/audio/{audio_id}',array(
 	'as'=> 'detailAudio',
 	'uses'=> 'AudioController@getAudioDetail'
@@ -306,12 +321,10 @@ Route::get('/audio-file/{filename}', array(
 	'uses' =>'AudioController@getAudio'
 ));
 
-
-
 /*------------ADD-COMMENT------------------*/
 //Indicamos el nombre de la ruta y metodo que va a cargar
-Route::post('/comment',array(
-	'as'=> 'comment',
+Route::post('/comment-audio',array(
+	'as'=> 'commentAudio',
 	'middleware'=>'auth',
 	'uses'=> 'CommentControllerAudio@store'
 ));
@@ -320,7 +333,7 @@ Route::post('/comment',array(
 //Indicamos el nombre de la ruta y metodo que va a cargar
 //---OJO---Si no le pasamos el segundo parametro me da error NotFoundHttpException
 //Esto porque es el parametro que le estamos pasando por el metodo del controlador. MUST BE HERE ALSO
-Route::get('/delete-comment/{comment_id}',array(
+Route::get('/delete-comment-audio/{comment_id}',array(
 	'as'=> 'commentDelete',
 	'middleware'=>'auth',
 	'uses'=> 'CommentControllerAudio@delete'
@@ -337,21 +350,21 @@ Route::get('/delete-audio/{audio_id}',array(
 ));
 
 /*------------EDITAR AUDIO------------------*/
-/*Creamos la ruta para editar el video y le pasamos el parametro de video_id*/
+/*Creamos la ruta para editar el audio y le pasamos el parametro de audio_id*/
 Route::get('/editar-audio/{audio_id}', array(
 	//Este va a ser el nombre de la ruta
 	'as' => 'editAudio', 
-	//Uso el AUTH para que solo pueda crear videos si estoy identificados
+	//Uso el AUTH para que solo pueda crear audios si estoy identificados
 	'middleware'=> 'auth',
 	//Ahora le indico que clase y que controlador(accion) va a utilizar
 	'uses' => 'AudioController@edit'
 ));
 /*------------GUARDAR-UPDATE------------------*/
-/*Creamos la ruta para guardar el video una vez creado*/
+/*Creamos la ruta para guardar el audio una vez creado*/
 Route::post ('/update-audio/{audio_id}', array(
 	//Este va a ser el nombre de la ruta
 	'as' => 'updateAudio', 
-	//Uso el AUTH para que solo pueda crear videos si estoy identificados
+	//Uso el AUTH para que solo pueda crear audios si estoy identificados
 	'middleware'=> 'auth',
 	//Ahora le indico que clase y que controlador(accion) va a utilizar
 	'uses' => 'AudioController@update'
@@ -359,43 +372,57 @@ Route::post ('/update-audio/{audio_id}', array(
 /*------------SEARCH------------------*/
 //El parametro search es un parametro opcional, me puede venir o no
 //Para que el FILTRO funcione le tengo que pasar a la ruta otro parametro FILTER. Tambien va a ser opcional (?)
-Route::get('/buscar/{search?}/{filter?}',array(
+Route::get('/buscar-audio/{search?}/{filter?}',array(
 	'as'=>'audioSearch',
 	'uses'=> 'AudioController@search'
 ));
 //----------------------------------------------------------------------------------------
-//----------------/RUTAS CONTROLADOR AUDIOS ---------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//------------------/RUTAS CONTROLADOR AUDIO ---------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 
+
+//----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 //------------------RUTAS CONTROLADOR DOCS ---------------------------------------------
 //----------------------------------------------------------------------------------------
-
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 
 /*------------CREAR------------------*/
 /*Creamos la ruta hacia la pagina y utilizamos un array para pasarle los parametros que estaremos utilizando*/
 Route::get ('/crear-doc', array(
 	//Este va a ser el nombre de la ruta
 	'as' => 'createDoc', 
-	//Uso el AUTH para que solo pueda crear videos si estoy identificados
+	//Uso el AUTH para que solo pueda crear docs si estoy identificados
 	'middleware'=> 'auth',
 	//Ahora le indico que clase y que controlador(accion) va a utilizar
 	'uses' => 'DocController@createDoc'
 ));
 
 /*------------GUARDAR------------------*/
-/*Creamos la ruta para guardar el video una vez creado*/
+/*Creamos la ruta para guardar el doc una vez creado*/
 Route::post ('/guardar-doc', array(
 	//Este va a ser el nombre de la ruta
 	'as' => 'saveDoc', 
-	//Uso el AUTH para que solo pueda crear videos si estoy identificados
+	//Uso el AUTH para que solo pueda crear docs si estoy identificados
 	'middleware'=> 'auth',
 	//Ahora le indico que clase y que controlador(accion) va a utilizar
 	'uses' => 'DocController@saveDoc'
 ));
 
 /*------------PAGINA-DOC-----------------*/
-/* Le pasamos por URL el parametro obligatorio del video y un array con las caracteristicas del video*/
+/* Le pasamos por URL el parametro obligatorio del doc y un array con las caracteristicas del doc*/
 Route::get('/doc/{doc_id}',array(
 	'as'=> 'detailDoc',
 	'uses'=> 'DocController@getDocDetail'
@@ -414,8 +441,8 @@ Route::get('/doc-file/{filename}', array(
 
 /*------------ADD-COMMENT------------------*/
 //Indicamos el nombre de la ruta y metodo que va a cargar
-Route::post('/comment',array(
-	'as'=> 'comment',
+Route::post('/comment-doc',array(
+	'as'=> 'commentDoc',
 	'middleware'=>'auth',
 	'uses'=> 'CommentControllerDoc@store'
 ));
@@ -424,7 +451,7 @@ Route::post('/comment',array(
 //Indicamos el nombre de la ruta y metodo que va a cargar
 //---OJO---Si no le pasamos el segundo parametro me da error NotFoundHttpException
 //Esto porque es el parametro que le estamos pasando por el metodo del controlador. MUST BE HERE ALSO
-Route::get('/delete-doc/{doc_id}',array(
+Route::get('/delete-comment-doc/{comment_id}',array(
 	'as'=> 'commentDelete',
 	'middleware'=>'auth',
 	'uses'=> 'CommentControllerDoc@delete'
@@ -441,21 +468,21 @@ Route::get('/delete-doc/{doc_id}',array(
 ));
 
 /*------------EDITAR DOC------------------*/
-/*Creamos la ruta para editar el video y le pasamos el parametro de video_id*/
+/*Creamos la ruta para editar el doc y le pasamos el parametro de doc_id*/
 Route::get('/editar-doc/{doc_id}', array(
 	//Este va a ser el nombre de la ruta
 	'as' => 'editDoc', 
-	//Uso el AUTH para que solo pueda crear videos si estoy identificados
+	//Uso el AUTH para que solo pueda crear docs si estoy identificados
 	'middleware'=> 'auth',
 	//Ahora le indico que clase y que controlador(accion) va a utilizar
 	'uses' => 'DocController@edit'
 ));
 /*------------GUARDAR-UPDATE------------------*/
-/*Creamos la ruta para guardar el video una vez creado*/
+/*Creamos la ruta para guardar el doc una vez creado*/
 Route::post ('/update-doc/{doc_id}', array(
 	//Este va a ser el nombre de la ruta
 	'as' => 'updateDoc', 
-	//Uso el AUTH para que solo pueda crear videos si estoy identificados
+	//Uso el AUTH para que solo pueda crear docs si estoy identificados
 	'middleware'=> 'auth',
 	//Ahora le indico que clase y que controlador(accion) va a utilizar
 	'uses' => 'DocController@update'
@@ -463,10 +490,17 @@ Route::post ('/update-doc/{doc_id}', array(
 /*------------SEARCH------------------*/
 //El parametro search es un parametro opcional, me puede venir o no
 //Para que el FILTRO funcione le tengo que pasar a la ruta otro parametro FILTER. Tambien va a ser opcional (?)
-Route::get('/buscar/{search?}/{filter?}',array(
+Route::get('/buscar-doc/{search?}/{filter?}',array(
 	'as'=>'docSearch',
 	'uses'=> 'DocController@search'
 ));
 //----------------------------------------------------------------------------------------
-//----------------/RUTAS CONTROLADOR DOCS ---------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//------------------/RUTAS CONTROLADOR DOCS ---------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
