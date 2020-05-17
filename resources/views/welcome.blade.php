@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('styles')
+    <link href="{{ asset('css/polaroidPics.css') }}" rel="stylesheet">
+@endpush
+
 @section('title','Bienvenidos')
 
 <!-- ---------MAIN-PAGE-TABS---------->
@@ -16,13 +20,16 @@
 	manteniendo el layout principal -->
 	<div class="col-md-10" style="padding-top: 10px">
 		<div class="row">
-			<div class="panel panel-success">
-					@yield('encabezado')	
-			</div>
-		</div>
 
-		<div class="row">
-			@yield('contentMain')
+<div class="polaroid rotate_right">
+  <img src="{{ URL::to('/') }}/DSC06584.JPG" alt="Pulpit rock" width="50%" height="auto">
+  <p class="caption">The pulpit rock in Lysefjorden, Norway.</p>
+</div>
+
+<div class="polaroid rotate_left">
+  <img src="{{ URL::to('/') }}/DSC06584.JPG" alt="Monterosso al Mare" width="50%" height="auto">
+  <p class="caption">Monterosso al Mare. One of the five villages in Cinque Terre, Italy.</p>
+</div>
 		</div>	
 	</div>			
 @endsection

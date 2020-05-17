@@ -1,5 +1,5 @@
 <!--Estos on los botones del TAB-->
-<ul class="nav nav-tabs" style="padding-top: 10px">
+<ul class="nav nav-tabs" style="padding-top: 10px; box-shadow: 0 0 10px 0 black;">
 
 	@if (Auth::guest())
     	<li class="active"><a href="{{route('welcome')}}"><span class="glyphicon glyphicon-home"></a></li>
