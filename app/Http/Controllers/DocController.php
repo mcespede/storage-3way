@@ -78,7 +78,7 @@ class DocController extends Controller
 
     	//Cuando termino le ahago una redireccion a HOME
     	//Ademas añado una alerta que diga que el doc se ha subido correctamente
-    	return redirect()->route ('home')->with(array(
+    	return redirect()->route ('docs')->with(array(
     		'message'=> 'El documento se ha subido correctamente'
     	 ));
     //*********CARPETA STORAGE ******************//
@@ -140,7 +140,7 @@ class DocController extends Controller
             $doc->delete();
         }
         //Lo ultimo que hace este metodo es redirigirnos a HOME con el aaray de mensaje para que me diga si se elimino o no correctamente
-        return redirect()->route('home')->with(array(
+        return redirect()->route('docs')->with(array(
             'message'=>'Documento eliminado correctamente'
         ));
     }
@@ -160,7 +160,7 @@ public function edit($doc_id){
         return view('doc.editDoc', array('doc' => $doc));
     //Si esto no funcionara hacemos una redireccion a la HOME sin mensaje
     }else{
-        return redirect()->route('home');
+        return redirect()->route('docs');
     }
     //Ahora es necesario crear la vista de Edit
 }
@@ -207,7 +207,7 @@ public function update($doc_id, Request $request){
 ///Una vez que todo esto este listo ya podemos hacer un UPDARe en la base de datos.
     $doc->update();
 
-    return redirect()->route('home')->with(array('message'=>'EL documento se ha actualizado correctamente'));
+    return redirect()->route('docs')->with(array('message'=>'EL documento se ha actualizado correctamente'));
     //Finalmente ceramos la ruta.
 }
 //*******************************************//
@@ -227,7 +227,7 @@ public function search($search = null, $filter = null){
         /**************SI PRESIONO EL BOTON SIN NINGUNA BUSQUEDA*************/
         //Si presiono el boton de busqueda sin nada nos redirige al listado principal en el HOME
         if (is_null($search)) {
-           return redirect()->route('mainPage');
+           return redirect()->route('docs');
         }
         /*******************************************************************/
         //Esto es para que nos llegue un parametro limpia cuando nos redirija

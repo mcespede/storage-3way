@@ -84,7 +84,7 @@ class VideoController extends Controller
 
     	//Cuando termino le ahago una redireccion a HOME
     	//Ademas añado una alerta que diga que el video se ha subido correctamente
-    	return redirect()->route ('home')->with(array(
+    	return redirect()->route ('videos')->with(array(
     		'message'=> 'El video se ha subido correctamente'
     	 ));
     //*********CARPETA STORAGE ******************//
@@ -158,7 +158,7 @@ class VideoController extends Controller
             $video->delete();
         }
         //Lo ultimo que hace este metodo es redirigirnos a HOME con el aaray de mensaje para que me diga si se elimino o no correctamente
-        return redirect()->route('home')->with(array(
+        return redirect()->route('videos')->with(array(
             'message'=>'Video eliminado correctamente'
         ));
     }
@@ -178,7 +178,7 @@ public function edit($video_id){
         return view('video.edit', array('video' => $video));
     //Si esto no funcionara hacemos una redireccion a la HOME sin mensaje
     }else{
-        return redirect()->route('home');
+        return redirect()->route('videos');
     }
     //Ahora es necesario crear la vista de Edit
 }
@@ -243,7 +243,7 @@ public function update($video_id, Request $request){
 ///Una vez que todo esto este listo ya podemos hacer un UPDARe en la base de datos.
     $video->update();
 
-    return redirect()->route('home')->with(array('message'=>'EL video se ha actualizado correctamente'));
+    return redirect()->route('videos')->with(array('message'=>'EL video se ha actualizado correctamente'));
     //Finalmente ceramos la ruta.
 }
 //*******************************************//
@@ -264,10 +264,10 @@ public function search($search = null, $filter = null){
         /**************SI PRESIONO EL BOTON SIN NINGUNA BUSQUEDA*************/
         //Si presiono el boton de busqueda sin nada nos redirige al listado principal en el HOME
         if (is_null($search)) {
-           return redirect()->route('home');
+           return redirect()->route('videos');
         }
         /*******************************************************************/
-        //Esto es para que nos llegue un parametro limpia cuando nos redirija
+        //Esto es para que nos llegue un parametro limpio cuando nos redirija
         //De esta manera a la hora de buscar algo, la direccion sale con lo que escribi en search
         //Le pasamos el contenido que tiene la variable por GET
         return redirect()->route('videoSearch',array('search' =>$search));
@@ -283,7 +283,7 @@ public function search($search = null, $filter = null){
     if (is_null($filter) && \Request::get('filter') && !is_null($search)) {
         //Creamos variable filter para capturar el parametro por GET
         $filter= \Request::get('filter');
-        //Esto es para que nos llegue un parametro limpia cuando nos redirija
+        //Esto es para que nos llegue un parametro limpio cuando nos redirija
         //De esta manera a la hora de buscar algo, la direccion sale con lo que escribi en search
         //Le pasamos el contenido que tiene la variable por GET, es decir los dos parametros
         return redirect()->route('videoSearch',array('search' =>$search, 'filter' =>$filter));
@@ -291,7 +291,7 @@ public function search($search = null, $filter = null){
     /**************Si hay filtro***********/
     //Aqui vamos a optimizar la consulta para que queda perfecta
     //Creamos dos variable que son las que va a utilizar el ORDERBY
-    //Estas con las variables que cambian en el filtro cunado seleccionamos las opciones
+    //Estas con las variables que cambian en el filtro cuado seleccionamos las opciones
     $colum ='id';
     $order = 'desc';
     //En caso de que el filtro exista, es decir que no es NULL

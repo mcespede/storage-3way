@@ -72,7 +72,7 @@ class AudioController extends Controller
 
     	//Cuando termino le hago una redireccion a HOME
     	//Ademas añado una alerta que diga que el audio se ha subido correctamente
-    	return redirect()->route ('home')->with(array(
+    	return redirect()->route ('audios')->with(array(
     		'message'=> 'El audio se ha subido correctamente'
     	 ));
     //*********CARPETA STORAGE ******************//
@@ -135,7 +135,7 @@ class AudioController extends Controller
             $audio->delete();
         }
         //Lo ultimo que hace este metodo es redirigirnos a HOME con el aaray de mensaje para que me diga si se elimino o no correctamente
-        return redirect()->route('home')->with(array(
+        return redirect()->route('audios')->with(array(
             'message'=>'Audio eliminado correctamente'
         ));
     }
@@ -155,7 +155,7 @@ public function edit($audio_id){
         return view('audio.editAudio', array('audio' => $audio));
     //Si esto no funcionara hacemos una redireccion a la HOME sin mensaje
     }else{
-        return redirect()->route('home');
+        return redirect()->route('audios');
     }
     //Ahora es necesario crear la vista de Edit
 }
@@ -203,7 +203,7 @@ public function update($audio_id, Request $request){
 ///Una vez que todo esto este listo ya podemos hacer un UPDARe en la base de datos.
     $audio->update();
 
-    return redirect()->route('home')->with(array('message'=>'EL audio se ha actualizado correctamente'));
+    return redirect()->route('audios')->with(array('message'=>'EL audio se ha actualizado correctamente'));
     //Finalmente ceramos la ruta.
 }
 //*******************************************//
@@ -223,7 +223,7 @@ public function search($search = null, $filter = null){
         /**************SI PRESIONO EL BOTON SIN NINGUNA BUSQUEDA*************/
         //Si presiono el boton de busqueda sin nada nos redirige al listado principal en el HOME
         if (is_null($search)) {
-           return redirect()->route('mainPage');
+           return redirect()->route('audios');
         }
         /*******************************************************************/
         //Esto es para que nos llegue un parametro limpia cuando nos redirija

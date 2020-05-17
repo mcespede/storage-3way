@@ -12,10 +12,11 @@ use App\User;
   y  a toda la informacion 
   Cada ruta debe de tener un metodo detras*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+//----------LANDING PAGE------------------//
+Route::get('/', array(
+	'as'=> 'welcome',
+	'uses'=> 'LandingPage@index'
+));
 //--------LISTA DE VIDEOS------------//
 Route::get('/videos', array(
 	'as'=> 'videos',
@@ -32,22 +33,6 @@ Route::get('/documentos', array(
 	'uses'=> 'LandingPage@docs'
 ));
 
-Route::get('/robotica', function () {
-    return view('mainView.robotica');
-});
-
-Route::get('/sistemas', function () {
-    return view('mainView.sistemas');
-});
-
-Route::get('/sobre-mi', function () {
-    return view('mainView.sobreMi');
-});
-
-
-Route::get('/desarrolloWeb', function () {
-    return view('mainView.desarrolloWeb');
-});
 //----------------------------------------------------------------------------------------
 //------------------AUTHENTICATION ---------------------------------------------
 //----------------------------------------------------------------------------------------
@@ -63,6 +48,7 @@ Auth::routes();
 //En el homecontroller le quitamos la parte de la atenticacion y le ponemos el middleware web
 Route::get('/home', array(
 	'as'=> 'home',
+	'middleware'=> 'auth',
 	'uses'=> 'HomeController@index'
 ));
 //----------------------------------------------------------------------------------------

@@ -1,16 +1,15 @@
 @push('styles')
-    <link href="{{ asset('css/socialMediaIcons.css') }}" rel="stylesheet">
+    <!--<link href="{{ asset('css/socialMediaIcons.css') }}" rel="stylesheet">-->
 @endpush
 
-<!--------------------------TOP-NAVIGATION-BAR----------------------------------------->
-<nav class="navbar navbar-default navbar-light navbar-static-top" style="background-color: #e3f2fd;">
+<!--------------------------TOP-NAVIGATION-BAR-------------------------------->
+<nav class="navbar navbar-default navbar-static-top" style="box-shadow: 0 0 10px 0 black;" >
 
 <!--------------------------TOP-BAR---------------------------------------- -->
     <div class="container col-md-12 col-md-offset-1">
             
-        <!--------------------------HEADER---------------------------------------- -->
-        <div class="navbar-header col-md-4">
-
+        <!--------------------------HEADER------------------------------------ -->
+        <div class="navbar-header col-md-1">
             <!-- --------------Collapsed Hamburger ---------------->
             <!-- Esto es el menu responsive -->
              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
@@ -20,7 +19,6 @@
                 <span class="icon-bar"></span>
             </button>
             <!-- --------------/Collapsed Hamburger --------------->
-
             <!-- -------------- Branding Image -------------------->
             <!-- Esto es el nombre que nos lleva a HOME-->
                     
@@ -28,16 +26,30 @@
                 <img src="https://i.pinimg.com/originals/1c/00/72/1c0072ede2933cd26dfbe3bdecd6784d.gif"     width="30" height="30" 
                     class="d-inline-block align-top" alt=""/>
             </a>
-            <!-- -------------- /Branding Image ------------------->
 
-           @include('layouts.searchbars.videoBar')
-           @include('layouts.searchbars.audioBar')
-           @include('layouts.searchbars.docBar') 
-
+            <!-- -------------- /Branding Image ------------------->          
         </div>
         <!--------------------------/HEADER---------------------------------------- -->          
-                
-            
+  <div class="navbar-header col-md-4">          
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{{route('home')}}"><span class=" glyphicon glyphicon-off"></a></li>
+
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Proyectos
+        <span class="caret"></span></a>
+
+        <ul class="dropdown-menu">
+          <li><a href="{{route('videos')}}"><span class=" glyphicon glyphicon-play-circle"> Videos</a></li>
+
+          <li><a href="{{route('audios')}}"><span class=" glyphicon glyphicon-volume-up"> Audios</a></li>
+
+          <li><a href="{{route('docs')}}"><span class=" glyphicon glyphicon-folder-open"> Archivos</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Sobre mí</a></li>
+      <li><a href="{{url('contacto')}}">Contacto</a></li>
+    </ul>
+   </div>         
         <!-----------------SOCIAL-MEDIA ------------------------------------------------>
         <div class="col-md-3" >
             <ul class="nav navbar-nav">
@@ -65,13 +77,6 @@
 
                 <!-- SI  estamos identificados nos muestra la pagina de USUARIO -->
                 @else
-
-                    <!-- NEW-VIDEO -->
-                    <!-- Es usuario identificado puede subir nuevos videos -->
-                    <li>
-                        <a href="{{route('createVideo')}}"> <span class="glyphicon glyphicon-circle-arrow-up">-</span>Subir Video</a>
-                    </li>
-                    <!-- /NEW-VIDEO -->
                             
                 <!-- Agregamos para que se vea el Alias registrado-->
                 <!-- Tendre un dropdown con el nombre del USUARIO identificado -->

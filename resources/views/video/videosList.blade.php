@@ -1,4 +1,12 @@
+@extends('layouts.videosTemplate')
 
+@section('title','Videos')
+
+@section('sideBar')
+    @include('layouts.sideBars.mainSideBar')
+@endsection
+
+@section('content')
     <!-- Ahora vamos a recorrer todos los videos que existen , utilizando el metodo PAGINATE que creamos en el controlador HOME -->
     <div id="videos-list" style="padding-top: 10px">
         <!-- Aqui hacemos un IF ELSE para trabajar con la SEARCH. Si existe videos que coincidan con la busqueda entra en el bucle, sino me muestra una alerta -->
@@ -88,5 +96,5 @@
                 {{$videos-> links()}}
             </div>
 
-
+@endsection
             

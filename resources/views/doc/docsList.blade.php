@@ -1,6 +1,14 @@
+@extends('layouts.documentosTemplate')
 
+@section('title','Archivos')
+
+@section('sideBar')
+    @include('layouts.sideBars.mainSideBar')
+@endsection
+
+@section('content')
     <!-- Ahora vamos a recorrer todos los docs que existen , utilizando el metodo PAGINATE que creamos en el controlador HOME -->
-    <div style="padding-top: 10px">
+    <div id="videos-list" style="padding-top: 10px">
         <!-- Aqui hacemos un IF ELSE para trabajar con la SEARCH. Si existe docs que coincidan con la busqueda entra en el bucle, sino me muestra una alerta -->
         @if(count($docs)>=1)
 
@@ -73,5 +81,5 @@
                 {{$docs-> links()}}
             </div>
 
-
+@endsection
             

@@ -1,6 +1,5 @@
-@extends('welcome')
+@extends('layouts.app')
 
-@section('encabezado')
 	<h3>
 		Sobre mí
 	</h3>

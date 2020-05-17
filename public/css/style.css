@@ -57,3 +57,14 @@ height: auto;
 padding: 10px;
 
 }
+
+/********************************************************************************/
+
+#navbar-toggle collapsed{
+    background:#ADD8E6;
+
+}
+
+#navbar-header{
+    background:#ADD8E6;
+}

@@ -10,6 +10,20 @@ use App\Doc;
 
 class LandingPage extends Controller
 {
+
+        public function __construct()
+    {
+        //Le quitamos el 'auth' y le agregamos el 'web' para que no se necesite autenticacion para ver los videos pero si para modificarlos
+        $this->middleware('web');
+    }
+    
+////////////   Landing PAGE /////////////////
+    public function index()
+    {
+        return view ('welcome',array(
+        ));
+    }
+
 ////////////   SHOW VIDEOS- /////////////////
         public function videos()
     {
@@ -24,7 +38,7 @@ class LandingPage extends Controller
         $videos = Video::orderBy('id','desc')-> paginate(5);
         /*Ahora le tengo que pasar la informacion a la vista, para eso le paso un array al VIEW*/
 
-        return view ('mainView.videos',array(
+        return view ('videos',array(
 
             /*Creo un indice VIDEOS y le paso todos los videos, de esta forma ya tengo accesible todos los videos en la vista home*/
             'videos' =>$videos
@@ -46,7 +60,7 @@ class LandingPage extends Controller
         $audios = Audio::orderBy('id','desc')-> paginate(5);
         /*Ahora le tengo que pasar la informacion a la vista, para eso le paso un array al VIEW*/
 
-        return view ('mainView.audios',array(
+        return view ('audios',array(
 
             /*Creo un indice VIDEOS y le paso todos los videos, de esta forma ya tengo accesible todos los videos en la vista home*/
             'audios' =>$audios
@@ -67,7 +81,7 @@ class LandingPage extends Controller
         $docs = Doc::orderBy('id','desc')-> paginate(5);
         /*Ahora le tengo que pasar la informacion a la vista, para eso le paso un array al VIEW*/
 
-        return view ('mainView.documentos',array(
+        return view ('docs',array(
 
             /*Creo un indice VIDEOS y le paso todos los videos, de esta forma ya tengo accesible todos los videos en la vista home*/
 

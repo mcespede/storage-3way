@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Con esto puedo agregar un tiulo individual a los tabs--->
-    <title>MCA- @yield('title')</title>
+    <title>MCA- @yield('title','Página de audios')</title>
 <!------------------------------------------- -->
     <!---------------- Styles ---------->
 
@@ -29,9 +29,6 @@
         @stack('styles')
         @stack('scripts')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-
   <!--------------------------------------- -->
 </head>
 
@@ -61,8 +58,12 @@
                             <!--La directiva (section) define una sección de contenido, mientras que la directiva (yield) es usada para mostrar el contenido de una sección específica
                             Es decir aqui se va a mostra el contenido de la seccion CONTENT de cualquiera de mis paginas. Solo tengo que poner la etiqueta CONTENT y el codigo-->
 
-                            @yield('tabs')
-                            @yield('search')
+                            @include('layouts.tabs.audioTab')
+                            
+                            @yield('alerts')
+
+                            @yield('searchWords')
+                            
                             @yield('content')
                         </div>
                         <!---------------CONTENT------------------------->
@@ -70,14 +71,16 @@
                         <!--------2-----------SEARCH BARS---------------------------->
                         <!--- Esto lo incluyo aqui porque se muestra en todas las vistas-->
 
-                        @yield('searchBar')  
+                        @include('layouts.searchBars.audioBar') 
                         <!-------------------/SEARCH BARS---------------------------->
 
                         <!--------3------------PANEL GROUP--------------------------->
                         <div class="panel-group col-md-3">                                                       
                             <div class="panel panel-default">
                                 <div class="panel-body">    
-                                    @yield('sideBar')
+                                    @include('layouts.sideBars.audioSideBar')
+                                    <!--Aveces solo la importacion de STACK en includes solo funcoina si le tramos el stack justo abajo, no se porque-->
+                                    @stack('styles')
                                 </div>
                             </div>
 

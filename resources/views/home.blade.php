@@ -1,32 +1,32 @@
 @extends('layouts.app')
 
-@section('title','Bienvenidos')
+@section('title','Página de inicio')
 
-<!-- ---------MAIN-PAGE-TABS---------->
+<!-- ---------HOME-PAGE-TABS---------->
 @section('tabs')
-	@include('layouts.tabs.mainPage.mainPageTabs')
+	@include('layouts.tabs.homePage.homePageTabs')
 @endsection
 <!-- ---------/MAIN-PAGE-TABS---------->
 
 <!-- ---------MAIN-PAGE-CONTENT---------->
-
 @section('content')
 <!-- Esto es como sifuera el layout de app, comienza de cero
 	para que todo lo que se hga click en la barra se refleje solo aqui 
 	manteniendo el layout principal -->
-	<div class="col-md-10" style="padding-top: 10px">
-		<div class="row">
+
+	<div class="col-md-10" style="padding-top: 10px">	
+		<div class="row col-md-12">
 			<div class="panel panel-success">
 					@yield('encabezado')	
 			</div>
 		</div>
 
 		<div class="row">
-			@yield('contentMain')
-		</div>	
-	</div>			
-@endsection
 
+			@yield('contentMain')
+		</div>			
+	</div>	
+@endsection
 <!-- ---------/MAIN-PAGE-CONTENT---------->
 
 <!------------ GENERAL-SEARCHBAR ---------->
