@@ -32,15 +32,18 @@
                             <!-------------BOTONES-------------->
                             <!-- Si estamos identificados nos muestra los botones de accion. Pero que tambien corresponda con el usuario que agrego el doc. Entonces sacamos de USER el ID -->
                             @if(Auth::check()&& Auth::user()->id == $doc->user->id)
-                                <a href="{{route('editDoc',['doc_id' => $doc ->id]) }}" class="btn btn-warning">Editar</a>
 
-                                <a href="{{route('detailDoc',['doc_id' => $doc ->id]) }}" class="btn btn-success">Ver</a>
+                                <a href="{{route('detailDoc',['doc_id' => $doc ->id]) }}" class="btn btn-success"><span class="glyphicon glyphicon-play-circle"></a>
+
+                                <a href="{{route('editDoc',['doc_id' => $doc ->id]) }}" class="btn btn-warning"><span class="glyphicon glyphicon-cog"></a>
+
+                                
                                 <!---------------------------------------------------------------------------->
                                 <!---------------------------OVERLAY------------------------------------------>
                                 <!-- Botón en HTML (lanza el modal en Bootstrap) -->
                                 <!-- Lo primero que tengo es un boton que nos hace ancla al DIV de abajo con id="vidtorModal"
                                 Hay que indicarle el ID del comentario para que no sean todos los mismos modals. Es decir para que cada ventanita y cada boton sea diferente. Sino me sale el mismo siempre ({{$doc->id}})-->
-                                <a href="#victorModal{{$doc->id}}" role="button" class="btn btn-danger" data-toggle="modal">Eliminar</a>
+                                <a href="#victorModal{{$doc->id}}" role="button" class="btn btn-danger" data-toggle="modal"><span class="glyphicon glyphicon-trash"></a>
       
                                     <!-- Modal / Ventana / Overlay en HTML -->
                                     <div id="victorModal{{$doc->id}}" class="modal fade">

@@ -47,15 +47,18 @@
                             <!-------------BOTONES-------------->
                             <!-- Si estamos identificados nos muestra los botones de accion. Pero que tambien corresponda con el usuario que agrego el video. Entonces sacamos de USER el ID -->
                             @if(Auth::check()&& Auth::user()->id == $video->user->id)
-                                <a href="{{route('editVideo',['video_id' => $video ->id]) }}" class="btn btn-warning">Editar</a>
+                                
+                                <a href="{{route('detailVideo',['video_id' => $video ->id]) }}" class="btn btn-success"><span class="glyphicon glyphicon-play-circle"></a>
+                                    
+                                <a href="{{route('editVideo',['video_id' => $video ->id]) }}" class="btn btn-warning"><span class="glyphicon glyphicon-cog"></span></a>
 
-                                <a href="{{route('detailVideo',['video_id' => $video ->id]) }}" class="btn btn-success">Ver</a>
+                                
                                 <!---------------------------------------------------------------------------->
                                 <!---------------------------OVERLAY------------------------------------------>
                                 <!-- Botón en HTML (lanza el modal en Bootstrap) -->
                                 <!-- Lo primero que tengo es un boton que nos hace ancla al DIV de abajo con id="vidtorModal"
                                 Hay que indicarle el ID del comentario para que no sean todos los mismos modals. Es decir para que cada ventanita y cada boton sea diferente. Sino me sale el mismo siempre ({{$video->id}})-->
-                                <a href="#victorModal{{$video->id}}" role="button" class="btn btn-danger" data-toggle="modal">Eliminar</a>
+                                <a href="#victorModal{{$video->id}}" role="button" class="btn btn-danger" data-toggle="modal"><span class="glyphicon glyphicon-trash"></a>
       
                                     <!-- Modal / Ventana / Overlay en HTML -->
                                     <div id="victorModal{{$video->id}}" class="modal fade">
