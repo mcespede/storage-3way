@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.audiosTemplate')
 
 @section('content')
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12" style="padding: 10px">
 		<div><h2>{{$audio->title}}</h2>
 			<hr>
 			<div class="col-md-12">

@@ -62,7 +62,7 @@
 					<!-- Botón en HTML (lanza el modal en Bootstrap) -->
 					<!-- Lo primero que tengo es un boton que nos hace ancla al DIV de abajo con id="vidtorModal"
 					Hay que indicarle el ID del comentario para que no sean todos los mismos modals. Es decir para que cada ventanita y cada boton sea diferente. Sino me sale el mismo siempre ({{$comment->id}})-->
-					<a href="#victorModal{{$comment->id}}" role="button" class="btn btn-sm btn-primary" data-toggle="modal">Eliminar</a>
+					<a href="#victorModal{{$comment->id}}" role="button" class="btn btn-sm btn-danger" data-toggle="modal"><span class="glyphicon glyphicon-trash"></a>
   
 					<!-- Modal / Ventana / Overlay en HTML -->
 					<div id="victorModal{{$comment->id}}" class="modal fade">

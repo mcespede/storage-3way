@@ -1,9 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.documentosTemplate')
 
 @section('content')
 <!------------------MAIN-CONTAINER----------------->
    
-        <div class="col-md-12">
+<div class="col-md-12" style="padding: 10px"> 
+
 		<h2>Crear un nuevo Documento</h1>
 
 		<!-- HR es una separacion para que se vea mejor -->

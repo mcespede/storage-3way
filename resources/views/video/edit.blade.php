@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.videosTemplate')
 
 @section('content')
-	<div class="container">
+	<div class="col-md-12" style="padding: 10px">
 		<div class="row">
 			<h2>Editar {{$video->title}}</h1>
 
